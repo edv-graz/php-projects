@@ -7,32 +7,32 @@ $cardDeck = [
 	[2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, [1, 11]]
 ];
 function getRandomCard(array &$cards): array {
-    $randomStackIndex = array_rand($cards);
-    $randomStack = &$cards[$randomStackIndex];
+    	$randomStackIndex = array_rand($cards);
+    	$randomStack = &$cards[$randomStackIndex];
     
-    $randomCardIndex = array_rand($randomStack);
-    $randomCard = $randomStack[$randomCardIndex];
+    	$randomCardIndex = array_rand($randomStack);
+    	$randomCard = $randomStack[$randomCardIndex];
 
-    if (is_array($randomCard)) {
-        array_splice($randomStack, $randomCardIndex, 1);
-        return $randomCard;
-    }
+    	if (is_array($randomCard)) {
+        	array_splice($randomStack, $randomCardIndex, 1);
+        	return $randomCard;
+    	}
 
-    array_splice($randomStack, $randomCardIndex, 1);
+    	array_splice($randomStack, $randomCardIndex, 1);
 
-    return [$randomCard];
+    	return [$randomCard];
 }
 
 function dealCards(array &$cardDeck, int $numCards = 2): array {
-    $cards = [];
-    for ($i = 0; $i < $numCards; $i++) {
-        $check = getRandomCard($cardDeck);
-        if (is_array($check[0])) {
-            $check[0] = $check[0][rand(0, 1)];
-        }
-        $cards[] = $check[0];
-    }
-    return $cards;
+    	$cards = [];
+    	for ($i = 0; $i < $numCards; $i++) {
+		$check = getRandomCard($cardDeck);
+		if (is_array($check[0])) {
+	    		$check[0] = $check[0][rand(0, 1)];
+		}
+		$cards[] = $check[0];
+    	}
+    	return $cards;
 }
 
 function whoWon($p_cards, $c_cards): int
