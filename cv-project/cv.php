@@ -28,7 +28,7 @@ $sex    = [ 'm', 'w', 'd' ];
 $data   = [];
 // Bild Upload ***************************************
 $upload_dir         = __DIR__ . '/uploads/img/';
-$max_file_size      = 1024 * 1024 * 2; // 2MB
+$max_file_size      = 1920 * 1080 * 2; // 4MB
 $allowed_types      = [ 'image/jpeg', 'image/png' ];
 $allowed_extensions = [ 'jpg', 'jpeg', 'png' ];
 $img_error          = '';

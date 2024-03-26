@@ -14,7 +14,7 @@
         </tr>
         <tr>
             <td>Geschlecht</td>
-            <td><?= $data['sex'] ?? '' ?></td>
+            <td><?= $data['sex'] == 1 ? 'Mann' : 'Frau' ?></td>
         </tr>
         <tr>
             <td>Alter</td>
