@@ -9,6 +9,7 @@
 <body>
 <header>
     <h1>Rate the Product</h1>
+	<?= $login->logged_in ? 'you are logged in' : '' ?>
 </header>
 <main>
 	<?php echo $content ?? ''; ?>

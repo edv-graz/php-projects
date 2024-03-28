@@ -4,7 +4,8 @@ class Product {
 	readonly string $id;
 	private string $src;
 	private string $title;
-	private bool $rating;
+	private int $upvotes;
+	private int $downvotes;
 
 	public function getSrc(): string {
 		return $this->src;
@@ -18,12 +19,24 @@ class Product {
 		$this->title = $title;
 	}
 
-	public function changeRating( bool $rating ): void {
-		$this->rating = $rating;
+	public function upVote(): void {
+		$this->upvotes += 1;
 	}
 
-	public function getRating(): bool {
-		return $this->rating;
+	public function getUpVotes() {
+		return $this->upvotes;
+	}
+
+	public function getDownVotes() {
+		return $this->downvotes;
+	}
+
+	public function downVote() {
+		$this->downvotes += 1;
+	}
+
+	public function getVoting(): int {
+		return $this->upvotes - $this->downvotes;
 	}
 }
 
