@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= e( $title ?? '' ) ?></title>
-    <meta name="description" content="<?= e( $description ?? '' ) ?>">
+    <title>IT-Blog-News Admin-Area</title>
     <link rel="stylesheet" type="text/css" href="../css/output.css">
 </head>
 <body>
 <header class="bg-white border-gray-200 dark:bg-gray-900 border-b-4">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div class="logo">
-            <a href="./index.php" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <a href="../index.php" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="../img/page-logo.png" alt="IT-Logo" width="100">
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">IT-News-Blog</span>
             </a>
@@ -28,20 +27,15 @@
             <div class="hidden w-full md:block md:w-auto" id="navbar-default">
                 <ul id="menu"
                     class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-									<?php foreach ( $navigation as $link ) : ?>
-                      <li>
-                          <a class="block py-2 px-3 text-white rounded bg-blue-700 hover:text-pink-600 md:bg-transparent <?= ( $section == $link['id'] ) ? 'md:text-pink-600' : 'md:text-blue-700' ?> md:p-0 dark:text-white md:dark:text-blue-500"
-                             href="category.php?id=<?= $link['id'] ?>"<?= ( $section == $link['id'] ) ? 'aria-current="page"' : '' ?>>
-														<?= e( $link['name'] ) ?>
-                          </a>
-                      </li>
-									<?php endforeach; ?>
                     <li>
-                        <a href="search.php">
-                            <object class="pointer-events-none" data="../img/material-search.svg" type="image/svg+xml">
-                                <img src="../img/material-search.png" alt="Search">
-                            </object>
-                        </a>
+                        <a class="block py-2 px-3 text-white rounded bg-blue-700 hover:text-pink-600 md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
+                           href="../admin/articles.php">Articles</a>
+
+                    </li>
+                    <li>
+                        <a class="block py-2 px-3 text-white rounded bg-blue-700 hover:text-pink-600 md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
+                           href="../admin/categories.php">Categories</a>
+
                     </li>
                 </ul>
             </div>
