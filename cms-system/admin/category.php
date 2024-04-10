@@ -3,7 +3,7 @@ require '../includes/validate.php';
 require '../includes/db-connect.php';
 require '../includes/functions.php';
 
-$id     = filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT ) ?? null;
+$id     = filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT ) ?? '';
 $errors = [
 	'issue'       => '',
 	'name'        => '',
@@ -38,7 +38,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 	$errors['name']        = is_text( $category['name'], 1, 50 ) && ( ! empty( $category['name'] ) ) ? '' : 'Name must be between 1 and 50 characters';
 	$errors['description'] = is_text( $category['description'], 1, 254 ) && ( ! empty( $category['description'] ) ) ? '' : 'Description must be between 1 and 254 characters';
 	// Fehler werden in eine Zeichenkette zusammengefasst
-	$problems = implode( array_filter( $errors ) );
+	$problems = implode( $errors );
 
 	// Wenn es keine Fehler gibt, wird die Kategorie gespeichert und der Benutzer zur Kategorie-Liste umgeleitet
 	if ( ! $problems ) {
@@ -72,7 +72,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 
 <?php include '../includes/header-admin.php' ?>
 <main class="container w-auto mx-auto md:w-1/2 flex justify-center flex-col items-center p-5">
-    <form class="w-full grid" action="category.php?id=<?= $id ?? '' ?>" method="POST">
+    <form class="w-full grid" action="category.php?id=<?= e( $id ) ?>" method="POST">
         <h2 class="text-3xl text-blue-500 mb-8"><?= $id ? 'Edit ' : 'New ' ?>Category</h2>
 			<?php if ( $errors['issue'] ): ?>
           <p class="error text-red-500 bg-red-200 p-5 rounded-md"><?= $errors['issue'] ?></p>
