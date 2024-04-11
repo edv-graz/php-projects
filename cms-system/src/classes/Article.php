@@ -57,5 +57,36 @@ class Article {
 		$sql = "DELETE FROM articles WHERE id = :id;";
 		$this->db->sql_execute( $sql, [ 'id' => $id ] );
 	}
+
+	public function count( string $search = '' ): int {
+		$sql = "SELECT COUNT(id) FROM articles WHERE published = 1;";
+		if ( $search ) {
+			$sql = "SELECT COUNT(id) FROM articles WHERE published = 1 AND (title LIKE :search OR summary LIKE :search OR content LIKE :search);";
+		}
+
+		return $this->db->sql_execute( $sql, [ 'search' => "%$search%" ] )->fetchColumn();
+	}
+
+	public function limit( string $search = '', int $per_page = 3, int $offset = 0 ): array {
+		$sql = "SELECT a.id, a.title, a.summary, a.category_id, a.user_id, c.name AS category,
+								CONCAT(u.forename, ' ', u.surname) AS author,
+								i.filename AS image_file,
+								i.alttext AS image_alt
+								FROM articles AS a
+								JOIN cms_edvgraz.category c on a.category_id = c.id
+								JOIN user as u on a.user_id = u.id
+								LEFT JOIN images as i on a.images_id = i.id
+								WHERE a.published = 1 AND (a.title LIKE :search OR a.summary LIKE :search OR a.content LIKE :search)
+								ORDER BY a.id DESC
+								LIMIT :per_page
+								OFFSET :offset";
+
+		return $this->db->sql_execute( $sql, [
+			'search'   => "%$search%",
+			'per_page' => $per_page,
+			'offset'   => $offset
+		] )->fetchAll();
+
+	}
 }
 
