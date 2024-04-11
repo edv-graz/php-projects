@@ -1,30 +1,17 @@
 <?php
-require 'includes/db-connect.php';
-require 'includes/functions.php';
-$cat_id = filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT );
-if ( ! $cat_id ) {
-	include 'page_not_found.php';
+require '../src/bootstrap.php';
+
+$id = filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT );
+if ( ! $id ) {
+	include APP_ROOT . '/public/page_not_found.php';
 }
 
-$sql  = "SELECT forename, surname, joined, profile_pic FROM user WHERE id = :id;";
-$user = pdo_execute( $pdo, $sql, [ 'id' => $cat_id ] )->fetch( PDO::FETCH_ASSOC );
+$user = $cms->getUser()->fetch( $id );
 if ( ! $user ) {
-	include 'page_not_found.php';
+	include APP_ROOT . '/public/page_not_found.php';
 }
-
-$sql = "SELECT a.id, a.title, a.summary, a.category_id, a.user_id, c.name  AS category,
-				CONCAT(u.forename, ' ', u.surname) as author, i.filename as image_file, i.alttext as image_alt
-				FROM articles as a
-				JOIN category as c ON a.category_id = c.id
-				JOIN user as u ON a.user_id = u.id
-				LEFT JOIN images as i ON a.images_id = i.id
-				WHERE a.user_id = :id AND a.published = 1
-                ORDER BY a.id DESC;";
-
-$articles = pdo_execute( $pdo, $sql, [ 'id' => $cat_id ] )->fetchAll( PDO::FETCH_ASSOC );
-
-$sql         = "SELECT id, name FROM category WHERE navigation = 1;";
-$navigation  = pdo_execute( $pdo, $sql )->fetchAll();
+$articles    = $cms->getArticle()->getAll( null, true, $id );
+$navigation  = $cms->getCategory()->fetchNavigation();
 $title       = $user['forename'] . ' ' . $user['surname'] . ' - IT-News';
 $description = $title;
 $section     = '';

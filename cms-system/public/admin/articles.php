@@ -1,19 +1,9 @@
 <?php
-require '../includes/functions.php';
-require '../includes/db-connect.php';
+require '../../src/bootstrap.php';
 
-$sql = "SELECT a.id, a.title, a.summary, a.created, a.published, a.category_id, a.user_id, c.name  AS category,
-				CONCAT(u.forename, ' ', u.surname) as author, i.filename as image_file, i.alttext as image_alt
-				FROM articles as a
-				JOIN category as c ON a.category_id = c.id
-				JOIN user as u ON a.user_id = u.id
-				LEFT JOIN images as i ON a.images_id = i.id
-				ORDER BY a.id DESC";
-
-$articles = pdo_execute( $pdo, $sql )->fetchAll( PDO::FETCH_ASSOC );
-
-$error   = filter_input( INPUT_GET, 'error' ) ?? '';
-$success = filter_input( INPUT_GET, 'success' ) ?? '';
+$articles = $cms->getArticle()->getAll( null, false );
+$error    = filter_input( INPUT_GET, 'error' ) ?? '';
+$success  = filter_input( INPUT_GET, 'success' ) ?? '';
 ?>
 
 <?php include '../includes/header-admin.php' ?>

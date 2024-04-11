@@ -1,26 +1,22 @@
 <?php
 
-require '../includes/db-connect.php';
-require '../includes/functions.php';
+require '../../src/bootstrap.php';
 
-// kontrolliere, ob eine ID übergeben wurde
+
 $id = filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT );
 if ( ! $id ) {
 	redirect( 'categories.php', [ 'error' => 'Category not found (id)' ] );
 }
-// kontrolliere, ob die ID bzw. Kategorie in der Datenbank existiert
-$sql = "SELECT id, name FROM category WHERE id = :id";
-// fetchColumn gibt die erste Spalte der gefundenen Zeile zurück (id).
-$category = pdo_execute( $pdo, $sql, [ 'id' => $id ] )->fetch();
+
+$category = $cms->getCategory()->fetch( $id );
 
 if ( ! $category ) {
 	redirect( 'categories.php', [ 'error' => 'Category not found' ] );
 }
-// wenn die Kategorie existiert, Lösche Daten aus der Datenbank
+
 if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
-	$sql = "DELETE FROM category WHERE id = :id";
 	try {
-		pdo_execute( $pdo, $sql, [ 'id' => $id ] );
+		$cms->getCategory()->delete( $id );
 		redirect( 'categories.php', [ 'success' => 'Category deleted' ] );
 	} catch ( PDOException $e ) {
 		if ( $e->errorInfo[1] === 1451 ) {

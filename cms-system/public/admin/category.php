@@ -1,7 +1,5 @@
 <?php
-require '../includes/validate.php';
-require '../includes/db-connect.php';
-require '../includes/functions.php';
+require '../../src/bootstrap.php';
 
 $id     = filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT ) ?? '';
 $errors = [
@@ -17,49 +15,39 @@ $category = [
 	'navigation'  => false
 ];
 
-// Wenn eine ID vorhanden ist, dann wird die Kategorie aus der Datenbank geladen
 if ( $id ) {
-	$sql      = "SELECT id, name, description, navigation FROM category WHERE id = :id";
-	$category = pdo_execute( $pdo, $sql, [ 'id' => $id ] )->fetch();
-	// Wenn die Kategorie nicht gefunden wurde, wird der Benutzer zur Auflistung aller Kategorien umgeleitet
-	// und über eine Fehlermeldung informiert.
+	$category = $cms->getCategory()->fetch( $id );
 	if ( ! $category ) {
 		redirect( 'categories.php', [ 'error' => 'category not found' ] );
 	}
 }
-
-// Wenn das Formular mit Daten abgeschickt wurde, dann werden die Daten validiert und gespeichert
 if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
-	// Die Daten werden aus dem Formular ausgelesen und validiert
 	$category['name']        = filter_input( INPUT_POST, 'name' );
 	$category['description'] = filter_input( INPUT_POST, 'description' );
-	$category['navigation']  = filter_input( INPUT_POST, 'navigation', FILTER_VALIDATE_BOOLEAN );
+	$category['navigation']  = filter_input( INPUT_POST, 'navigation', FILTER_VALIDATE_BOOLEAN ) ?? 0;
 	// Die Daten werden auf Länge und vorhanden validiert
-	$errors['name']        = is_text( $category['name'], 1, 50 ) && ( ! empty( $category['name'] ) ) ? '' : 'Name must be between 1 and 50 characters';
-	$errors['description'] = is_text( $category['description'], 1, 254 ) && ( ! empty( $category['description'] ) ) ? '' : 'Description must be between 1 and 254 characters';
-	// Fehler werden in eine Zeichenkette zusammengefasst
+	$errors['name']        = Validate::is_text( $category['name'], 1, 50 ) && ( ! empty( $category['name'] ) ) ? ''
+		: 'Name must be between 1 and 50 characters';
+	$errors['description'] = Validate::is_text( $category['description'], 1, 254 ) && ( ! empty( $category['description'] ) ) ? ''
+		: 'Description must be between 1 and 254 characters';
+
 	$problems = implode( $errors );
 
-	// Wenn es keine Fehler gibt, wird die Kategorie gespeichert und der Benutzer zur Kategorie-Liste umgeleitet
 	if ( ! $problems ) {
-		// Wenn die ID vorhanden ist, wird die Kategorie aktualisiert (UPDATE), ansonsten wird eine neue Kategorie in der Datenbank erstellt
-		$sql = "INSERT INTO category (name, description, navigation) VALUES (:name, :description, :navigation)";
-		if ( $id ) {
-			$sql = "UPDATE category SET name = :name, description = :description, navigation = :navigation WHERE id = :id";
-		}
-		// Die zu speichernden Daten werden in ein Array zusammengefasst um später die Platzhalter zu ersetzten
 		$bindings = [
 			'name'        => $category['name'],
 			'description' => $category['description'],
 			'navigation'  => $category['navigation']
 		];
-		if ( $id ) {
-			$bindings['id'] = $id;
-		}
-		// Die Daten werden in die Datenbank gespeichert und der Benutzer wird zur Kategorie-Liste umgeleitet
 		try {
-			pdo_execute( $pdo, $sql, $bindings );
-			redirect( 'categories.php', [ 'success' => 'category successfully saved' ] );
+			if ( $id ) {
+				$bindings['id'] = $id;
+				$cms->getCategory()->update( $bindings );
+				redirect( 'categories.php', [ 'success' => 'category successfully saved' ] );
+			} else {
+				$cms->getCategory()->push( $bindings );
+				redirect( 'categories.php', [ 'success' => 'category successfully saved' ] );
+			}
 		} catch ( PDOException $e ) {
 			$errors['issue'] = 'Name already in use';
 		}

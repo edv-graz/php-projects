@@ -1,33 +1,29 @@
 <?php
-require '../includes/db-connect.php';
-require '../includes/functions.php';
+require '../../src/bootstrap.php';
+
 $id = filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT );
 if ( ! $id ) {
 	redirect( 'articles.php', [ 'error' => 'Article not found (id)' ] );
 }
 
 $sql     = "SELECT a.title, a.images_id, i.filename FROM articles a LEFT JOIN images i ON a.images_id = i.id WHERE a.id = :id";
-$article = pdo_execute( $pdo, $sql, [ 'id' => $id ] )->fetch( PDO::FETCH_ASSOC );
+$article = $cms->getArticle()->fetch( $id );
 if ( ! $article ) {
 	redirect( 'articles.php', [ 'error' => 'Article not found' ] );
 }
 
 if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 	try {
-		$pdo->beginTransaction();
 		if ( $article['images_id'] ) {
 			$sql = "UPDATE articles SET images_id = NULL WHERE id = :id";
-			pdo_execute( $pdo, $sql, [ 'id' => $id ] );
+			$cms->getArticle()->update( $id );
 			$sql = "DELETE FROM images WHERE id = :id";
-			pdo_execute( $pdo, $sql, [ 'id' => $article['images_id'] ] );
-			unlink( dirname( __DIR__ ) . '/uploads/' . $article['filename'] );
+			$cms->getImage()->delete( $article['images_id'] );
+			unlink( UPLOAD_DIR . $article['filename'] );
 		}
-		$sql = "DELETE FROM articles WHERE id = :id";
-		pdo_execute( $pdo, $sql, [ 'id' => $id ] );
-		$pdo->commit();
+		$cms->getArticle()->delete( $id );
 		redirect( 'articles.php', [ 'success' => 'Article deleted' ] );
 	} catch ( PDOException $e ) {
-		$pdo->rollBack();
 		redirect( 'articles.php', [ 'error' => 'Article could not be deleted' ] );
 	}
 }

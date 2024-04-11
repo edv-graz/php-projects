@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= e( $title ?? '' ) ?></title>
     <meta name="description" content="<?= e( $description ?? '' ) ?>">
-    <link rel="stylesheet" type="text/css" href="../css/output.css">
+    <link rel="stylesheet" type="text/css" href="./css/output.css">
 </head>
 <body>
 <header class="bg-white border-gray-200 dark:bg-gray-900 border-b-4">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div class="logo">
             <a href="./index.php" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="../img/page-logo.png" alt="IT-Logo" width="100">
+                <img src="./img/page-logo.png" alt="IT-Logo" width="100">
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">IT-News-Blog</span>
             </a>
         </div>
@@ -39,7 +39,7 @@
                     <li>
                         <a href="search.php">
                             <object class="pointer-events-none" data="../img/material-search.svg" type="image/svg+xml">
-                                <img src="../img/material-search.png" alt="Search">
+                                <img src="./img/material-search.png" alt="Search">
                             </object>
                         </a>
                     </li>

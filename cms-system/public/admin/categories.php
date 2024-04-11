@@ -1,13 +1,11 @@
 <?php
-require '../includes/functions.php';
-require '../includes/db-connect.php';
+require '../../src/bootstrap.php';
 
-$sql        = "SELECT id, name, navigation FROM category";
-$categories = pdo_execute( $pdo, $sql )->fetchAll( PDO::FETCH_ASSOC );
-
+$categories = $cms->getCategory()->getAll();
 
 $error   = filter_input( INPUT_GET, 'error' ) ?? '';
 $success = filter_input( INPUT_GET, 'success' ) ?? '';
+
 
 ?>
 <?php include '../includes/header-admin.php' ?>
