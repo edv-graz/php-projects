@@ -1,5 +1,10 @@
 <?php
 
+namespace EdvGraz\CMS;
+
+use PDO;
+use PDOStatement;
+
 class Database extends PDO {
 	public function __construct( string $dsn, string $user_name, string $password, array $options = [] ) {
 		$default = [

@@ -1,5 +1,7 @@
 <?php
 
+namespace EdvGraz\CMS;
+
 class User {
 	protected Database $db;
 

@@ -1,5 +1,8 @@
 <?php
 
+namespace EdvGraz\CMS;
+
+
 class CMS {
 	protected Database $db;
 	protected Article $article;

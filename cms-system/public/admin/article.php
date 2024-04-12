@@ -1,6 +1,8 @@
 <?php
 require '../../src/bootstrap.php';
 
+use EdvGraz\Validation\Validate;
+
 $id       = filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT ) ?? '';
 $tmp_path = $_FILES['image_file']['tmp_name'] ?? '';
 $save_to  = '';

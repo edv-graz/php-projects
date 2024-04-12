@@ -1,5 +1,7 @@
 <?php
 
+namespace EdvGraz\CMS;
+
 class Image {
 	protected Database $db;
 

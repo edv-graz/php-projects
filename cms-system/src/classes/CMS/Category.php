@@ -1,5 +1,7 @@
 <?php
 
+namespace EdvGraz\CMS;
+
 class Category {
 	protected Database $db;
 
