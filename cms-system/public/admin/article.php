@@ -73,6 +73,14 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 	$article['user_id']     = filter_input( INPUT_POST, 'user', FILTER_VALIDATE_INT );
 	$article['category_id'] = filter_input( INPUT_POST, 'category', FILTER_VALIDATE_INT );
 	$article['published']   = filter_input( INPUT_POST, 'published', FILTER_VALIDATE_BOOLEAN ) ? 1 : 0;
+
+	// HTML-Code wird bereinigt
+	$purifier = new HTMLPurifier();
+	// Es werden nur die in der set Methode genannten HTML-Tags zugelassen
+	$purifier->config->set( 'HTML.Allowed', 'p,br,strong,em,a[href],i,u,ul,ol,li,img[src|alt]' );
+	// Purifier wird auf den Content angewendet
+	$article['content'] = $purifier->purify( $article['content'] );
+
 	// Error-Meldung erstellen und zusätzliche Validierung
 	$errors['title']    = Validate::is_text( $article['title'] ) ? '' : 'Title must be between 1 and 100 characters';
 	$errors['summary']  = Validate::is_text( $article['summary'], 1, 200 ) ? '' : 'Summary must be between 1 and 200 characters';
@@ -124,7 +132,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
             <span class="text-red-500"><?= $errors['summary'] ?></span>
             <label class="block mb-2 text-sm font-medium text-gray-900 pt-2" for="content">Content</label>
             <textarea id="content" rows="10" name="content"
-                      class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"><?= e( $article['content'] ) ?></textarea>
+                      class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"><?= $article['content'] ?></textarea>
             <span class="text-red-500"><?= $errors['content'] ?></span>
         </div>
         <div>
@@ -169,6 +177,15 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
         <button type="submit" class="text-white bg-blue-500 p-3 rounded-md hover:bg-pink-600">Save</button>
     </form>
 </main>
+<script>
+  tinymce.init({
+    selector: '#content',
+    menubar: false,
+    toolbar: 'bold italic underline link',
+    plugins: 'link',
+    link_title: false
+  })
+</script>
 
 <?php include '../includes/footer-admin.php'; ?>
 

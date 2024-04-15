@@ -37,7 +37,7 @@ $section     = $article['category_id'];
     <section>
         <h1 class="text-4xl text-blue-500 mb-4 mt-8"><?= e( $article['title'] ) ?></h1>
         <div class="text-gray-500 mb-3"><?= e( format_date( $article['created'] ) ) ?></div>
-        <div class="text-gray-500"><?= e( ( $article['content'] ) ) ?></div>
+        <div class="text-gray-500"><?= $article['content'] ?></div>
         <p class="credit text-xs mt-5 mb-5">
             Posted in <a class="text-pink-400" href="category.php?id=<?= $article['category_id'] ?>">
 						<?= e( $article['category'] ) ?></a>

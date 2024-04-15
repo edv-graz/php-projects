@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.tiny.cloud/1/mpuqamj9ivr3tvo5w2laaiegvinmk42ziufm7enk2agbsxop/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <title>IT-Blog-News Admin-Area</title>
     <link rel="stylesheet" type="text/css" href="../css/output.css">
 </head>
