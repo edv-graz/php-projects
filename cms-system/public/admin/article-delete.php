@@ -6,7 +6,6 @@ if ( ! $id ) {
 	redirect( 'articles.php', [ 'error' => 'Article not found (id)' ] );
 }
 
-$sql     = "SELECT a.title, a.images_id, i.filename FROM articles a LEFT JOIN images i ON a.images_id = i.id WHERE a.id = :id";
 $article = $cms->getArticle()->fetch( $id );
 if ( ! $article ) {
 	redirect( 'articles.php', [ 'error' => 'Article not found' ] );
@@ -15,9 +14,7 @@ if ( ! $article ) {
 if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 	try {
 		if ( $article['images_id'] ) {
-			$sql = "UPDATE articles SET images_id = NULL WHERE id = :id";
 			$cms->getArticle()->update( $id );
-			$sql = "DELETE FROM images WHERE id = :id";
 			$cms->getImage()->delete( $article['images_id'] );
 			unlink( UPLOAD_DIR . $article['filename'] );
 		}
@@ -28,14 +25,11 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 	}
 }
 
-?>
-<?php include '../includes/header-admin.php' ?>
-<main class="container mx-auto p-10 flex flex-col items-center">
-    <form method="post" action="article-delete.php?id=<?= $id ?>">
-        <input type="hidden" name="id" value="<?= $id ?>">
-        <p class="text-blue-600 text-2xl mb-4">Are you sure you want to delete this article?</p>
-        <button type="submit" class="bg-pink-600 text-white p-3 rounded-md w-1/3">Yes</button>
-        <button type="submit" formaction="articles.php" class="bg-blue-500 text-white p-3 rounded-md w-1/3">No</button>
-    </form>
-</main>
-<?php include '../includes/footer-admin.php' ?>
+echo $twig->render( 'admin/article-delete.html', [
+	'article' => $article,
+	'id'      => $id,
+] );
+
+
+
+

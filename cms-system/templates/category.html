@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{category.name}}{% endblock %}
+{% block description %} {{category.description}} {% endblock %}
+
+{% block content %}
+<aside class="flex justify-center items-center flex-col p-8">
+    <h1 class="text-4xl text-blue-500 mb-8">{{category.name}}</h1>
+    <p class="text-gray-500">{{category.description}}</p>
+</aside>
+
+<main class="flex flex-wrap p-8" id="content">
+    {% include 'article-list.html' %}
+</main>
+{% endblock %}
+

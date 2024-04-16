@@ -1,0 +1,42 @@
+{% extends 'admin/layout.html' %}
+
+{% block content %}
+<main class="container w-auto mx-auto md:w-1/2 flex justify-center flex-col items-center p-5">
+    <form action="{{doc_root}}admin/category.php?id={{id}}" class="w-full grid" method="POST">
+        {% if id is empty %}
+        <h2 class="text-3xl text-blue-500 mb-8">New Category</h2>
+        {% else %}
+        <h2 class="text-3xl text-blue-500 mb-8">Edit Category</h2>
+        {% endif %}
+
+        {% if (errors.issue is not empty) %}
+        <p class="error text-red-500 bg-red-200 p-5 rounded-md"><{{errors.issue}}</p>
+        {% endif %}
+
+        <div class="p-4">
+            <label class="block mb-2 text-sm font-medium text-gray-900" for="name">Name</label>
+            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                   id="name" name="name" type="text" value="{{category.name}}">
+            <span class="text-red-500">{{errors.name}}</span>
+        </div>
+        <div class="p-4">
+            <label class="block mb-2 text-sm font-medium text-gray-900" for="description">Description</label>
+            <textarea
+                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                    id="description" name="description">{{category.description}}</textarea>
+            <span class="text-red-500">{{errors.description}}</span>
+        </div>
+        <div class="p-4">
+            {% if category.navigation %}
+            <input checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600"
+                   id="navigation" name="navigation" type="checkbox">
+            {% else %}
+            <input class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600"
+                   id="navigation" name="navigation" type="checkbox">
+            {% endif %}
+            <label class="ms-2 text-sm font-medium text-gray-900" for="navigation">Navigation</label>
+        </div>
+        <button class="text-white bg-blue-500 p-3 rounded-md hover:bg-pink-600" type="submit">Save</button>
+    </form>
+</main>
+{% endblock %}

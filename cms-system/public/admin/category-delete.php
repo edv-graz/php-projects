@@ -25,15 +25,11 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 	}
 }
 
-?>
+echo $twig->render( 'admin/category-delete.html', [
+	'category' => $category,
+	'id'       => $id,
+] );
 
-<?php include '../includes/header-admin.php' ?>
-<main class="container mx-auto p-10 flex flex-col items-center">
-    <form method="post" action="category-delete.php?id=<?= $id ?>">
-        <input type="hidden" name="id" value="<?= $id ?>">
-        <p class="text-blue-600 text-2xl mb-4">Are you sure you want to delete this category?</p>
-        <button type="submit" class="bg-pink-600 text-white p-3 rounded-md w-1/3">Yes</button>
-        <button type="submit" formaction="categories.php" class="bg-blue-500 text-white p-3 rounded-md w-1/3">No</button>
-    </form>
-</main>
-<?php include '../includes/footer-admin.php' ?>
+
+
+

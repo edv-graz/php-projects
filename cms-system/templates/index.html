@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+
+{%block title %}{{title}}{% endblock %}
+{%block content %}
+<main class="flex flex-wrap p-8" id="content">
+    {% include 'article-list.html' %}
+</main>
+{%endblock %}
+

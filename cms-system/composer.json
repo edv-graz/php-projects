@@ -1,6 +1,7 @@
 {
   "require": {
-    "ezyang/htmlpurifier": "^4.17"
+    "ezyang/htmlpurifier": "^4.17",
+    "twig/twig": "^3.8"
   },
   "autoload": {
     "psr-4": {
@@ -8,4 +9,3 @@
     }
   }
 }
-

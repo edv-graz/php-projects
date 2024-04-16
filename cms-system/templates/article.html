@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{category.name}}{% endblock %}
+{% block description %} {{category.description}} {% endblock %}
+
+{% block content %}
+<main class="flex flex-wrap container mx-auto">
+    <section>
+        {% if article.image_file %}
+        <img alt="{{article.image_alt}}"
+             src="{{doc_root}}uploads/{{article.image_file}}">
+        {% else %}
+        <img alt="No image available" src="{{doc_root}}images/placeholder.jpg">
+        {% endif %}
+    </section>
+    <section>
+        <h1 class="text-4xl text-blue-500 mb-4 mt-8">{{article.title}}</h1>
+        <div class="text-gray-500 mb-3">{{article.created|date('d M. Y')}}</div>
+        <div class="text-gray-500">{{article.content}}</div>
+        <p class="credit text-xs mt-5 mb-5">
+            Posted in <a class="text-pink-400" href="{{doc_root}}category.php?id={{article.category_id}}">
+            {{article.category}}</a>
+            by <a class="text-pink-400" href="{{doc_root}}user.php?id={{article.user_id}}">
+            {{article.author}}</a>
+        </p>
+    </section>
+</main>
+{% endblock %}
+
+

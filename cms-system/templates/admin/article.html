@@ -1,0 +1,106 @@
+{% extends 'admin/layout.html' %}
+
+{% block content %}
+<main class="p-10">
+    {% if (article.id is empty) %}
+    <h2 class="text-3xl text-blue-500 mb-8 text-center">New Article</h2>
+    {% else %}
+    <h2 class="text-3xl text-blue-500 mb-8 text-center">Edit Article</h2>
+    {% endif %}
+    {% if (errors.issue is not empty) %}
+    <p class="error text-red-500 bg-red-200 p-5 rounded-md">{{errors.issue}}</p>
+    {% endif %}
+    <form action="{{doc_root}}admin/article.php?id={{id}}" class="grid gap-6 mb-6 md:grid-cols-2 md:w-full" enctype="multipart/form-data"
+          method="POST">
+        <div>
+            <label class="block mb-2 text-sm font-medium text-gray-900 pt-2" for="title">Title</label>
+            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                   id="title" name="title" type="text"
+                   value="{{article.title}}">
+            <span class="text-red-500">{{errors.title}}</span>
+            <label class="block mb-2 text-sm font-medium text-gray-900 pt-2" for="summary">Summary</label>
+            <textarea
+                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                    id="summary"
+                    name="summary">{{article.summary}}</textarea>
+            <span class="text-red-500">{{errors.summary}}</span>
+            <label class="block mb-2 text-sm font-medium text-gray-900 pt-2" for="content">Content</label>
+            <textarea
+                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                    id="content" name="content"
+                    rows="10">{{article.content}}</textarea>
+            <span class="text-red-500">{{errors.content}}</span>
+        </div>
+        <div>
+            <label class="block mb-2 text-sm font-medium text-gray-900 pt-2" for="category">Category</label>
+            <select class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                    id="category"
+                    name="category">
+                <option>select category</option>
+                {% for category in categories %}
+                {% if (category.id == article.category_id) %}
+                <option selected value="{{category.id}}">{{category.name}}</option>
+                {% else %}
+                <option value="{{category.id}}">{{category.name}}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+            <span class="text-red-500">{{errors.category}}</span>
+            <label class="block mb-2 text-sm font-medium text-gray-900 pt-2" for="user_id">User</label>
+            <select class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                    id="user_id"
+                    name="user">
+                <option>select user</option>
+                <?php foreach ( $users as $user ): ?>
+                {% for user in users %}
+                {% if (user.id == article.user_id) %}
+                <option selected value="{{user.id}}">{{user.forename}} {{user.surname}}</option>
+                {% else %}
+                <option value="{{user.id}}">{{user.forename}} {{user.surname}}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+            <span class="text-red-500">{{errors.user}}</span>
+            {% if (article.image_file is empty) %}
+            <label class="block mb-2 text-sm font-medium text-gray-900 pt-2" for="image_file">Image</label>
+            <input accept="image/jpeg, image/png"
+                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                   id="image_file" name="image_file"
+                   type="file">
+            <span class="text-red-500">{{errors.image_file}}</span>
+            {% else %}
+            <img alt="{{article.image_alt}}" class="w-full h-auto" src="{{doc_root}}uploads/{{article.image_file}}"/>
+            <span>Alt Text: {{article.image_alt}}</span>
+            <a class="text-blue-500" href="{{doc_root}}admin/alt-text-edit.php?id={{article.id}}">Edit Alt Text</a>
+            <a class="text-red-500" href="{{doc_root}}admin/img-delete.php?id={{article.id}}">Delete Image</a>
+            {% endif %}
+
+            <label class="block mb-2 text-sm font-medium text-gray-900 pt-2" for="image_alt">Image Alt</label>
+            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                   id="image_alt" name="image_alt" type="text"
+                   value="{{article.image_alt}}">
+            <span class="text-red-500">{{errors.image_alt}}</span>
+            <label class="block mb-2 text-sm font-medium text-gray-900 pt-2" for="published">Published</label>
+            {% if (article.published) %}
+            <input checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600"
+                   id="published" name="published"
+                   type="checkbox">
+            {% else %}
+            <input class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600" id="published"
+                   name="published"
+                   type="checkbox">
+            {% endif %}
+        </div>
+        <button class="text-white bg-blue-500 p-3 rounded-md hover:bg-pink-600" type="submit">Save</button>
+    </form>
+</main>
+<script>
+  tinymce.init({
+    selector: '#content',
+    menubar: false,
+    toolbar: 'bold italic underline link',
+    plugins: 'link',
+    link_title: false
+  })
+</script>
+{% endblock %}
