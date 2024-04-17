@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{%block title %}Contact{% endblock %}
+{%block content %}
+<main class="container mx-auto flex justify-center flex-col items-center">
+    <header class="p-10">
+        <h1 class="text-4xl text-blue-500 mb-8">Contact</h1>
+    </header>
+    <form action="{{doc_root}}contact.php?" class="w-2/3 grid" method="POST">
+        {% if (errors.issue is not empty) %}
+        <p class="error text-red-500 bg-red-200 p-5 rounded-md">{{errors.issue}}</p>
+        {% endif %}
+        {% if (success is not empty) %}
+        <p class="success text-gray-800 bg-green-200 p-5 rounded-md">{{success}}</p>
+        {% endif %}
+        <div class="p-4">
+            <label class="block mb-2 text-sm font-medium text-gray-900" for="from">E-Mail-Address</label>
+            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                   id="from" name="from" type="text" value="{{from}}">
+            <span class="text-red-500">{{errors.mail}}</span>
+        </div>
+        <div class="p-4">
+            <label class="block mb-2 text-sm font-medium text-gray-900" for="text">Message</label>
+            <textarea
+                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                    id="text" name="text">{{text}}</textarea>
+            <span class="text-red-500">{{errors.text}}</span>
+        </div>
+        <button class="text-white bg-blue-500 p-3 rounded-md hover:bg-pink-600" type="submit">Send</button>
+    </form>
+</main>
+{% endblock %}
+

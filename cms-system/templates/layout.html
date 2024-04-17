@@ -53,9 +53,12 @@
 </header>
 {% block content %}
 {% endblock %}
-<footer>
-    <div class="mx-auto bg-slate-50  p-4">
+<footer class="mx-auto bg-slate-50  p-4 flex justify-around">
+    <div>
         &copy; edvgraz {{ 'now'|date('Y') }}
+    </div>
+    <div>
+        <a href="{{doc_root}}contact.php">Contact</a>
     </div>
 </footer>
 </body>

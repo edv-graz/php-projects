@@ -143,12 +143,18 @@ class __TwigTemplate_786eeaaebf91777c86b68985e1bd0f41 extends Template
         // line 54
         $this->displayBlock('content', $context, $blocks);
         // line 56
-        echo "<footer>
-    <div class=\"mx-auto bg-slate-50  p-4\">
+        echo "<footer class=\"mx-auto bg-slate-50  p-4 flex justify-around\">
+    <div>
         &copy; edvgraz ";
         // line 58
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, "now", "Y"), "html", null, true);
         echo "
+    </div>
+    <div>
+        <a href=\"";
+        // line 61
+        echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
+        echo "contact.php\">Contact</a>
     </div>
 </footer>
 </body>
@@ -196,7 +202,7 @@ class __TwigTemplate_786eeaaebf91777c86b68985e1bd0f41 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  173 => 54,  166 => 6,  159 => 5,  150 => 58,  146 => 56,  144 => 54,  132 => 45,  128 => 44,  124 => 43,  121 => 42,  111 => 38,  105 => 37,  102 => 36,  96 => 35,  92 => 33,  88 => 32,  67 => 14,  63 => 13,  54 => 7,  50 => 6,  46 => 5,  40 => 1,);
+        return array (  179 => 54,  172 => 6,  165 => 5,  156 => 61,  150 => 58,  146 => 56,  144 => 54,  132 => 45,  128 => 44,  124 => 43,  121 => 42,  111 => 38,  105 => 37,  102 => 36,  96 => 35,  92 => 33,  88 => 32,  67 => 14,  63 => 13,  54 => 7,  50 => 6,  46 => 5,  40 => 1,);
     }
 
     public function getSourceContext()
@@ -256,9 +262,12 @@ class __TwigTemplate_786eeaaebf91777c86b68985e1bd0f41 extends Template
 </header>
 {% block content %}
 {% endblock %}
-<footer>
-    <div class=\"mx-auto bg-slate-50  p-4\">
+<footer class=\"mx-auto bg-slate-50  p-4 flex justify-around\">
+    <div>
         &copy; edvgraz {{ 'now'|date('Y') }}
+    </div>
+    <div>
+        <a href=\"{{doc_root}}contact.php\">Contact</a>
     </div>
 </footer>
 </body>
