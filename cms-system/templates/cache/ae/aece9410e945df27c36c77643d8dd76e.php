@@ -62,7 +62,7 @@ class __TwigTemplate_9fc84b4806ee414ee28d10c249f69919 extends Template
         echo "        ";
         if ( !twig_test_empty(($context["success"] ?? null))) {
             // line 10
-            echo "        <p class=\"success text-green-500 bg-green-200 p-5 rounded-md\"><";
+            echo "        <p class=\"success text-green-500 bg-green-200 p-5 rounded-md\">";
             echo twig_escape_filter($this->env, ($context["success"] ?? null), "html", null, true);
             echo "</p>
         ";
@@ -202,7 +202,7 @@ class __TwigTemplate_9fc84b4806ee414ee28d10c249f69919 extends Template
         <p class=\"error text-red-500 bg-red-200 p-5 rounded-md\">{{error}}</p>
         {% endif %}
         {% if (success is not empty) %}
-        <p class=\"success text-green-500 bg-green-200 p-5 rounded-md\"><{{success}}</p>
+        <p class=\"success text-green-500 bg-green-200 p-5 rounded-md\">{{success}}</p>
         {% endif %}
         <h1 class=\"text-4xl text-blue-500 mb-8\">Articles</h1>
         <button class=\"text-white bg-blue-500 p-3 rounded-md hover:bg-pink-600\"><a href=\"{{doc_root}}admin/article.php\">Add a new Article</a></button>

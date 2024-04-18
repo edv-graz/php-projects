@@ -49,14 +49,47 @@ class __TwigTemplate_ece7d040b33256ddf26636073b4520bb extends Template
 </head>
 <body>
 <header class=\"bg-white border-gray-200 dark:bg-gray-900 border-b-4\">
+    <nav class=\"bg-gray-100\">
+        <ul class=\"flex justify-end p-1\">
+            <li class=\"p-1\">
+                <a class=\"text-pink-600 hover:text-blue-600\" href=\"";
+        // line 15
+        echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
+        echo "user.php?id=";
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["session"] ?? null), "id", [], "any", false, false, false, 15), "html", null, true);
+        echo "\">";
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["session"] ?? null), "forename", [], "any", false, false, false, 15), "html", null, true);
+        echo "</a>
+            </li>
+            ";
+        // line 17
+        if ((twig_get_attribute($this->env, $this->source, ($context["session"] ?? null), "role", [], "any", false, false, false, 17) == "admin")) {
+            // line 18
+            echo "            <li class=\"p-1\">
+                <a class=\"text-pink-600 hover:text-blue-600\" href=\"";
+            // line 19
+            echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
+            echo "admin/index.php\">Admin</a>
+            </li>
+            ";
+        }
+        // line 22
+        echo "            <li class=\"p-1\">
+                <a class=\"text-pink-600 hover:text-blue-600\" href=\"";
+        // line 23
+        echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
+        echo "logout.php\">Logout</a>
+            </li>
+        </ul>
+    </nav>
     <div class=\"max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4\">
         <div class=\"logo\">
             <a class=\"flex items-center space-x-3 rtl:space-x-reverse\" href=\"";
-        // line 14
+        // line 29
         echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
-        echo "index.php\">
+        echo "admin/index.php\">
                 <img alt=\"IT-Logo\" src=\"";
-        // line 15
+        // line 30
         echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
         echo "img/page-logo.png\" width=\"100\">
                 <span class=\"self-center text-2xl font-semibold whitespace-nowrap dark:text-white\">IT-News-Blog</span>
@@ -77,7 +110,7 @@ class __TwigTemplate_ece7d040b33256ddf26636073b4520bb extends Template
                     <li>
                         <a class=\"block py-2 px-3 text-white rounded bg-blue-700 hover:text-pink-600 md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500\"
                            href=\"";
-        // line 33
+        // line 48
         echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
         echo "admin/articles.php\">Articles</a>
 
@@ -85,7 +118,7 @@ class __TwigTemplate_ece7d040b33256ddf26636073b4520bb extends Template
                     <li>
                         <a class=\"block py-2 px-3 text-white rounded bg-blue-700 hover:text-pink-600 md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500\"
                            href=\"";
-        // line 38
+        // line 53
         echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
         echo "admin/categories.php\">Categories</a>
                     </li>
@@ -95,13 +128,13 @@ class __TwigTemplate_ece7d040b33256ddf26636073b4520bb extends Template
     </div>
 </header>
 ";
-        // line 45
+        // line 60
         $this->displayBlock('content', $context, $blocks);
-        // line 48
+        // line 63
         echo "<footer>
     <div class=\"mx-auto bg-slate-50  p-4\">
         &copy; edvgraz ";
-        // line 50
+        // line 65
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, "now", "Y"), "html", null, true);
         echo "
     </div>
@@ -110,11 +143,11 @@ class __TwigTemplate_ece7d040b33256ddf26636073b4520bb extends Template
 </html>";
     }
 
-    // line 45
+    // line 60
     public function block_content($context, array $blocks = [])
     {
         $macros = $this->macros;
-        // line 46
+        // line 61
         echo "
 ";
     }
@@ -140,7 +173,7 @@ class __TwigTemplate_ece7d040b33256ddf26636073b4520bb extends Template
      */
     public function getDebugInfo()
     {
-        return array (  118 => 46,  114 => 45,  105 => 50,  101 => 48,  99 => 45,  89 => 38,  81 => 33,  60 => 15,  56 => 14,  47 => 8,  38 => 1,);
+        return array (  151 => 61,  147 => 60,  138 => 65,  134 => 63,  132 => 60,  122 => 53,  114 => 48,  93 => 30,  89 => 29,  80 => 23,  77 => 22,  71 => 19,  68 => 18,  66 => 17,  57 => 15,  47 => 8,  38 => 1,);
     }
 
     public function getSourceContext()
@@ -156,9 +189,24 @@ class __TwigTemplate_ece7d040b33256ddf26636073b4520bb extends Template
 </head>
 <body>
 <header class=\"bg-white border-gray-200 dark:bg-gray-900 border-b-4\">
+    <nav class=\"bg-gray-100\">
+        <ul class=\"flex justify-end p-1\">
+            <li class=\"p-1\">
+                <a class=\"text-pink-600 hover:text-blue-600\" href=\"{{doc_root}}user.php?id={{session.id}}\">{{session.forename}}</a>
+            </li>
+            {% if session.role == 'admin' %}
+            <li class=\"p-1\">
+                <a class=\"text-pink-600 hover:text-blue-600\" href=\"{{doc_root}}admin/index.php\">Admin</a>
+            </li>
+            {% endif %}
+            <li class=\"p-1\">
+                <a class=\"text-pink-600 hover:text-blue-600\" href=\"{{doc_root}}logout.php\">Logout</a>
+            </li>
+        </ul>
+    </nav>
     <div class=\"max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4\">
         <div class=\"logo\">
-            <a class=\"flex items-center space-x-3 rtl:space-x-reverse\" href=\"{{doc_root}}index.php\">
+            <a class=\"flex items-center space-x-3 rtl:space-x-reverse\" href=\"{{doc_root}}admin/index.php\">
                 <img alt=\"IT-Logo\" src=\"{{doc_root}}img/page-logo.png\" width=\"100\">
                 <span class=\"self-center text-2xl font-semibold whitespace-nowrap dark:text-white\">IT-News-Blog</span>
             </a>

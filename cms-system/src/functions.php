@@ -19,6 +19,13 @@ function format_date( string $string ): string {
 	exit;
 }
 
+function is_admin( string $role ): void {
+	if ( $role !== 'admin' ) {
+		header( 'Location: ' . DOC_ROOT );
+		exit;
+	}
+}
+
 function get_file_path( string $filename, string $path ): string {
 	$basename  = pathinfo( $filename, PATHINFO_FILENAME );
 	$extension = pathinfo( $filename, PATHINFO_EXTENSION );

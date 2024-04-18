@@ -1,5 +1,6 @@
 <?php
 require '../../src/bootstrap.php';
+is_admin( $session->role );
 
 use EdvGraz\Validation\Validate;
 

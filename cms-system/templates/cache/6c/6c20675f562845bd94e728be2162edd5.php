@@ -86,32 +86,31 @@ class __TwigTemplate_3f6ca47869f12e52092e9fc27e10091e extends Template
         </tr>
         </thead>
         <tbody>
-        <?php /*foreach ( \$categories as \$category ) : */ ?>
         ";
-        // line 28
+        // line 27
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["categories"] ?? null));
         foreach ($context['_seq'] as $context["_key"] => $context["category"]) {
-            // line 29
+            // line 28
             echo "        <tr class=\"bg-white border-b dark:bg-gray-800\">
             <td class=\"px-6 py-4 font-medium text-gray-900 whitespace-nowrap\">";
-            // line 30
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["category"], "name", [], "any", false, false, false, 30), "html", null, true);
+            // line 29
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["category"], "name", [], "any", false, false, false, 29), "html", null, true);
             echo "</td>
             <td class=\"px-6 py-4 font-medium text-pink-600 whitespace-nowrap\"><a
                     href=\"";
-            // line 32
+            // line 31
             echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
             echo "admin/category.php?id=";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["category"], "id", [], "any", false, false, false, 32), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["category"], "id", [], "any", false, false, false, 31), "html", null, true);
             echo "\">Edit</a>
             </td>
             <td class=\"px-6 py-4 font-medium text-blue-600 whitespace-nowrap\"><a
                     href=\"";
-            // line 35
+            // line 34
             echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
             echo "admin/category-delete.php?id=";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["category"], "id", [], "any", false, false, false, 35), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["category"], "id", [], "any", false, false, false, 34), "html", null, true);
             echo "\">Delete</a>
             </td>
         </tr>
@@ -120,7 +119,7 @@ class __TwigTemplate_3f6ca47869f12e52092e9fc27e10091e extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['category'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 39
+        // line 38
         echo "        </tbody>
     </table>
 </main>
@@ -148,7 +147,7 @@ class __TwigTemplate_3f6ca47869f12e52092e9fc27e10091e extends Template
      */
     public function getDebugInfo()
     {
-        return array (  124 => 39,  112 => 35,  104 => 32,  99 => 30,  96 => 29,  92 => 28,  75 => 14,  72 => 13,  66 => 11,  63 => 10,  57 => 8,  55 => 7,  50 => 4,  46 => 3,  35 => 1,);
+        return array (  123 => 38,  111 => 34,  103 => 31,  98 => 29,  95 => 28,  91 => 27,  75 => 14,  72 => 13,  66 => 11,  63 => 10,  57 => 8,  55 => 7,  50 => 4,  46 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -179,7 +178,6 @@ class __TwigTemplate_3f6ca47869f12e52092e9fc27e10091e extends Template
         </tr>
         </thead>
         <tbody>
-        <?php /*foreach ( \$categories as \$category ) : */ ?>
         {% for category in categories %}
         <tr class=\"bg-white border-b dark:bg-gray-800\">
             <td class=\"px-6 py-4 font-medium text-gray-900 whitespace-nowrap\">{{category.name}}</td>

@@ -8,6 +8,32 @@
 </head>
 <body>
 <header class="bg-white border-gray-200 dark:bg-gray-900 border-b-4">
+    <nav class="log-in register  bg-gray-100">
+        {% if session.id == 0 %}
+        <ul class="flex justify-end p-1">
+            <li class="p-1">
+                <a class="text-pink-600 hover:text-blue-600" href="{{doc_root}}login.php">Login</a>
+            </li>
+            <li class="p-1">
+                <a class="text-pink-600 hover:text-blue-600" href="{{doc_root}}register.php">Register</a>
+            </li>
+        </ul>
+        {% else %}
+        <ul class="flex justify-end p-1">
+            <li class="p-1">
+                <a class="text-pink-600 hover:text-blue-600" href="{{doc_root}}user.php?id={{session.id}}">{{session.forename}}</a>
+            </li>
+            {% if session.role == 'admin' %}
+            <li class="p-1">
+                <a class="text-pink-600 hover:text-blue-600" href="{{doc_root}}admin/index.php">Admin</a>
+            </li>
+            {% endif %}
+            <li class="p-1">
+                <a class="text-pink-600 hover:text-blue-600" href="{{doc_root}}logout.php">Logout</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div class="logo">
             <a class="flex items-center space-x-3 rtl:space-x-reverse" href="{{doc_root}}index.php">

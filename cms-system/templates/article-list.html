@@ -16,5 +16,10 @@
         by <a class="text-pink-400" href="{{root_doc}}user.php?id={{article.user_id}}">
         {{article.author}}</a>
     </p>
+    {% if (session.id == article.user_id) %}
+    <p class="edit mt-4">
+        <a class="text-white bg-pink-600  hover:bg-blue-600 p-2 rounded-md mt-2" href="{{doc_root}}edit-article.php?id={{article.id}}">Edit</a>
+    </p>
+    {% endif %}
 </article>
 {% endfor %}

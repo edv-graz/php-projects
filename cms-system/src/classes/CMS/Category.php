@@ -2,6 +2,8 @@
 
 namespace EdvGraz\CMS;
 
+use PDOException;
+
 class Category {
 	protected Database $db;
 

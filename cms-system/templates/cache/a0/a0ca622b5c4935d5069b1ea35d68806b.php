@@ -81,27 +81,56 @@ class __TwigTemplate_e74a7507453ce343c076396068ca687b extends Template
         // line 11
         if (twig_get_attribute($this->env, $this->source, ($context["user"] ?? null), "profile_pic", [], "any", false, false, false, 11)) {
             // line 12
-            echo "        <img alt=\"Profile Picture\" class=\"mx-auto\" src=\"";
+            echo "        <div class=\"w-1/3 m-auto\">
+            <img alt=\"Profile Picture\" class=\"mx-auto\" src=\"";
+            // line 13
             echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
             echo "uploads/";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["user"] ?? null), "profile_pic", [], "any", false, false, false, 12), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["user"] ?? null), "profile_pic", [], "any", false, false, false, 13), "html", null, true);
             echo "\">
+        </div>
         ";
         } else {
-            // line 14
-            echo "        <img alt=\"No image available\" class=\"mx-auto\" src=\"";
+            // line 16
+            echo "        <div class=\"w-1/4 m-auto\">
+            <img alt=\"No image available\" class=\"mx-auto\" src=\"";
+            // line 17
             echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
             echo "uploads/placeholder.jpg\">
+        </div>
         ";
         }
-        // line 16
+        // line 20
+        echo "        ";
+        if ((twig_get_attribute($this->env, $this->source, ($context["session"] ?? null), "id", [], "any", false, false, false, 20) == twig_get_attribute($this->env, $this->source, ($context["user"] ?? null), "id", [], "any", false, false, false, 20))) {
+            // line 21
+            echo "        <div class=\"flex justify-center\">
+            <a class=\"text-white bg-pink-600  hover:bg-blue-600 p-2 rounded-md m-2\" href=\"";
+            // line 22
+            echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
+            echo "edit-user-profile.php\">
+                Edit Profile</a>
+            <a class=\"text-white bg-pink-600  hover:bg-blue-600 p-2 rounded-md m-2\" href=\"";
+            // line 24
+            echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
+            echo "edit-article.php\">
+                Add Article</a>
+            <a class=\"text-white bg-pink-600  hover:bg-blue-600 p-2 rounded-md m-2\" href=\"";
+            // line 26
+            echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
+            echo "edit-profile-pic.php\">
+                Edit Profile Picture</a>
+        </div>
+        ";
+        }
+        // line 30
         echo "    </section>
     <!-- Ab hier gleich wie in der index.php -->
     <section class=\"flex flex-wrap p-8\">
         ";
-        // line 19
-        $this->loadTemplate("article-list.html", "user.html", 19)->display($context);
-        // line 20
+        // line 33
+        $this->loadTemplate("article-list.html", "user.html", 33)->display($context);
+        // line 34
         echo "    </section>
 </main>
 ";
@@ -128,7 +157,7 @@ class __TwigTemplate_e74a7507453ce343c076396068ca687b extends Template
      */
     public function getDebugInfo()
     {
-        return array (  105 => 20,  103 => 19,  98 => 16,  92 => 14,  84 => 12,  82 => 11,  78 => 10,  72 => 9,  68 => 7,  64 => 6,  55 => 4,  48 => 3,  37 => 1,);
+        return array (  134 => 34,  132 => 33,  127 => 30,  120 => 26,  115 => 24,  110 => 22,  107 => 21,  104 => 20,  98 => 17,  95 => 16,  87 => 13,  84 => 12,  82 => 11,  78 => 10,  72 => 9,  68 => 7,  64 => 6,  55 => 4,  48 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -144,9 +173,23 @@ class __TwigTemplate_e74a7507453ce343c076396068ca687b extends Template
         <h1 class=\"text-3xl text-center\">{{user.forename}} {{user.surname}}</h1>
         <p class=\"text-center text-gray-500\">Joined: {{user.joined|date('d M. Y')}}</p>
         {% if user.profile_pic %}
-        <img alt=\"Profile Picture\" class=\"mx-auto\" src=\"{{doc_root}}uploads/{{user.profile_pic}}\">
+        <div class=\"w-1/3 m-auto\">
+            <img alt=\"Profile Picture\" class=\"mx-auto\" src=\"{{doc_root}}uploads/{{user.profile_pic}}\">
+        </div>
         {% else %}
-        <img alt=\"No image available\" class=\"mx-auto\" src=\"{{doc_root}}uploads/placeholder.jpg\">
+        <div class=\"w-1/4 m-auto\">
+            <img alt=\"No image available\" class=\"mx-auto\" src=\"{{doc_root}}uploads/placeholder.jpg\">
+        </div>
+        {% endif %}
+        {% if session.id == user.id %}
+        <div class=\"flex justify-center\">
+            <a class=\"text-white bg-pink-600  hover:bg-blue-600 p-2 rounded-md m-2\" href=\"{{doc_root}}edit-user-profile.php\">
+                Edit Profile</a>
+            <a class=\"text-white bg-pink-600  hover:bg-blue-600 p-2 rounded-md m-2\" href=\"{{doc_root}}edit-article.php\">
+                Add Article</a>
+            <a class=\"text-white bg-pink-600  hover:bg-blue-600 p-2 rounded-md m-2\" href=\"{{doc_root}}edit-profile-pic.php\">
+                Edit Profile Picture</a>
+        </div>
         {% endif %}
     </section>
     <!-- Ab hier gleich wie in der index.php -->

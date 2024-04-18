@@ -30,5 +30,18 @@ class Validate {
 
 		return false;
 	}
+
+	public static function is_password( string $password ): bool {
+
+		if ( mb_strlen( $password ) >= 8
+		     and preg_match( '/[A-Z]/', $password )
+		         and preg_match( '/[a-z]/', $password )
+		             and preg_match( '/[0-9]/', $password )
+		) {
+			return true;
+		}
+
+		return false;
+	}
 }
 

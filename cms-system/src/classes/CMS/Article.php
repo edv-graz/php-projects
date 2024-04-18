@@ -64,9 +64,11 @@ class Article {
 		$sql = "SELECT COUNT(id) FROM articles WHERE published = 1;";
 		if ( $search ) {
 			$sql = "SELECT COUNT(id) FROM articles WHERE published = 1 AND (title LIKE :search OR summary LIKE :search OR content LIKE :search);";
+
+			return $this->db->sql_execute( $sql, [ 'search' => "%$search%" ] )->fetchColumn();
 		}
 
-		return $this->db->sql_execute( $sql, [ 'search' => "%$search%" ] )->fetchColumn();
+		return $this->db->sql_execute( $sql )->fetchColumn();
 	}
 
 	public function limit( string $search = '', int $per_page = 3, int $offset = 0 ): array {

@@ -9,6 +9,8 @@ class CMS {
 	protected Category $category;
 	protected User $user;
 	protected Image $image;
+	protected Session $session;
+	protected Token $token;
 
 	public function __construct( string $dsn, string $user_name, string $password ) {
 		$this->db = new Database( $dsn, $user_name, $password );
@@ -45,5 +47,21 @@ class CMS {
 		}
 
 		return $this->image;
+	}
+
+	public function getSession(): Session {
+		if ( ! isset( $this->session ) ) {
+			$this->session = new Session();
+		}
+
+		return $this->session;
+	}
+
+	public function getToken(): Token {
+		if ( ! isset( $this->token ) ) {
+			$this->token = new Token( $this->db );
+		}
+
+		return $this->token;
 	}
 }

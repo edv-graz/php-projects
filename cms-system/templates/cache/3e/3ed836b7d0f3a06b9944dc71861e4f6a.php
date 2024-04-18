@@ -56,14 +56,71 @@ class __TwigTemplate_786eeaaebf91777c86b68985e1bd0f41 extends Template
 </head>
 <body>
 <header class=\"bg-white border-gray-200 dark:bg-gray-900 border-b-4\">
+    <nav class=\"log-in register  bg-gray-100\">
+        ";
+        // line 12
+        if ((twig_get_attribute($this->env, $this->source, ($context["session"] ?? null), "id", [], "any", false, false, false, 12) == 0)) {
+            // line 13
+            echo "        <ul class=\"flex justify-end p-1\">
+            <li class=\"p-1\">
+                <a class=\"text-pink-600 hover:text-blue-600\" href=\"";
+            // line 15
+            echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
+            echo "login.php\">Login</a>
+            </li>
+            <li class=\"p-1\">
+                <a class=\"text-pink-600 hover:text-blue-600\" href=\"";
+            // line 18
+            echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
+            echo "register.php\">Register</a>
+            </li>
+        </ul>
+        ";
+        } else {
+            // line 22
+            echo "        <ul class=\"flex justify-end p-1\">
+            <li class=\"p-1\">
+                <a class=\"text-pink-600 hover:text-blue-600\" href=\"";
+            // line 24
+            echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
+            echo "user.php?id=";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["session"] ?? null), "id", [], "any", false, false, false, 24), "html", null, true);
+            echo "\">";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["session"] ?? null), "forename", [], "any", false, false, false, 24), "html", null, true);
+            echo "</a>
+            </li>
+            ";
+            // line 26
+            if ((twig_get_attribute($this->env, $this->source, ($context["session"] ?? null), "role", [], "any", false, false, false, 26) == "admin")) {
+                // line 27
+                echo "            <li class=\"p-1\">
+                <a class=\"text-pink-600 hover:text-blue-600\" href=\"";
+                // line 28
+                echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
+                echo "admin/index.php\">Admin</a>
+            </li>
+            ";
+            }
+            // line 31
+            echo "            <li class=\"p-1\">
+                <a class=\"text-pink-600 hover:text-blue-600\" href=\"";
+            // line 32
+            echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
+            echo "logout.php\">Logout</a>
+            </li>
+            ";
+        }
+        // line 35
+        echo "        </ul>
+    </nav>
     <div class=\"max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4\">
         <div class=\"logo\">
             <a class=\"flex items-center space-x-3 rtl:space-x-reverse\" href=\"";
-        // line 13
+        // line 39
         echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
         echo "index.php\">
                 <img alt=\"IT-Logo\" src=\"";
-        // line 14
+        // line 40
         echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
         echo "img/page-logo.png\" width=\"100\">
                 <span class=\"self-center text-2xl font-semibold whitespace-nowrap dark:text-white\">IT-News-Blog</span>
@@ -84,31 +141,31 @@ class __TwigTemplate_786eeaaebf91777c86b68985e1bd0f41 extends Template
                     md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700\"
                     id=\"menu\">
                     ";
-        // line 32
+        // line 58
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["navigation"] ?? null));
         foreach ($context['_seq'] as $context["_key"] => $context["link"]) {
-            // line 33
+            // line 59
             echo "                    <li>
                         <a class=\"block py-2 px-3 rounded bg-blue-700
                          ";
-            // line 35
-            if ((($context["section"] ?? null) == twig_get_attribute($this->env, $this->source, $context["link"], "id", [], "any", false, false, false, 35))) {
+            // line 61
+            if ((($context["section"] ?? null) == twig_get_attribute($this->env, $this->source, $context["link"], "id", [], "any", false, false, false, 61))) {
                 echo "md:text-pink-600";
             } else {
                 echo "md:text-blue-600";
             }
-            // line 36
+            // line 62
             echo "                         hover:text-pink-600 md:bg-transparent md:p-0 dark:text-white md:dark:text-blue-500\"
                            href=\"";
-            // line 37
+            // line 63
             echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
             echo "category.php?id=";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["link"], "id", [], "any", false, false, false, 37), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["link"], "id", [], "any", false, false, false, 63), "html", null, true);
             echo "\">
                             ";
-            // line 38
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["link"], "name", [], "any", false, false, false, 38), "html", null, true);
+            // line 64
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["link"], "name", [], "any", false, false, false, 64), "html", null, true);
             echo "
                         </a>
                     </li>
@@ -117,18 +174,18 @@ class __TwigTemplate_786eeaaebf91777c86b68985e1bd0f41 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['link'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 42
+        // line 68
         echo "                    <li>
                         <a href=\"";
-        // line 43
+        // line 69
         echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
         echo "search.php\">
                             <object class=\"pointer-events-none\" data=\"";
-        // line 44
+        // line 70
         echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
         echo "img/material-search.svg\" type=\"image/svg+xml\">
                                 <img alt=\"Search\" src=\"";
-        // line 45
+        // line 71
         echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
         echo "img/material-search.png\">
                             </object>
@@ -140,19 +197,19 @@ class __TwigTemplate_786eeaaebf91777c86b68985e1bd0f41 extends Template
     </div>
 </header>
 ";
-        // line 54
+        // line 80
         $this->displayBlock('content', $context, $blocks);
-        // line 56
+        // line 82
         echo "<footer class=\"mx-auto bg-slate-50  p-4 flex justify-around\">
     <div>
         &copy; edvgraz ";
-        // line 58
+        // line 84
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, "now", "Y"), "html", null, true);
         echo "
     </div>
     <div>
         <a href=\"";
-        // line 61
+        // line 87
         echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
         echo "contact.php\">Contact</a>
     </div>
@@ -175,7 +232,7 @@ class __TwigTemplate_786eeaaebf91777c86b68985e1bd0f41 extends Template
         echo "All about IT and New from Software Development and Hardware";
     }
 
-    // line 54
+    // line 80
     public function block_content($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -202,7 +259,7 @@ class __TwigTemplate_786eeaaebf91777c86b68985e1bd0f41 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  179 => 54,  172 => 6,  165 => 5,  156 => 61,  150 => 58,  146 => 56,  144 => 54,  132 => 45,  128 => 44,  124 => 43,  121 => 42,  111 => 38,  105 => 37,  102 => 36,  96 => 35,  92 => 33,  88 => 32,  67 => 14,  63 => 13,  54 => 7,  50 => 6,  46 => 5,  40 => 1,);
+        return array (  236 => 80,  229 => 6,  222 => 5,  213 => 87,  207 => 84,  203 => 82,  201 => 80,  189 => 71,  185 => 70,  181 => 69,  178 => 68,  168 => 64,  162 => 63,  159 => 62,  153 => 61,  149 => 59,  145 => 58,  124 => 40,  120 => 39,  114 => 35,  108 => 32,  105 => 31,  99 => 28,  96 => 27,  94 => 26,  85 => 24,  81 => 22,  74 => 18,  68 => 15,  64 => 13,  62 => 12,  54 => 7,  50 => 6,  46 => 5,  40 => 1,);
     }
 
     public function getSourceContext()
@@ -217,6 +274,32 @@ class __TwigTemplate_786eeaaebf91777c86b68985e1bd0f41 extends Template
 </head>
 <body>
 <header class=\"bg-white border-gray-200 dark:bg-gray-900 border-b-4\">
+    <nav class=\"log-in register  bg-gray-100\">
+        {% if session.id == 0 %}
+        <ul class=\"flex justify-end p-1\">
+            <li class=\"p-1\">
+                <a class=\"text-pink-600 hover:text-blue-600\" href=\"{{doc_root}}login.php\">Login</a>
+            </li>
+            <li class=\"p-1\">
+                <a class=\"text-pink-600 hover:text-blue-600\" href=\"{{doc_root}}register.php\">Register</a>
+            </li>
+        </ul>
+        {% else %}
+        <ul class=\"flex justify-end p-1\">
+            <li class=\"p-1\">
+                <a class=\"text-pink-600 hover:text-blue-600\" href=\"{{doc_root}}user.php?id={{session.id}}\">{{session.forename}}</a>
+            </li>
+            {% if session.role == 'admin' %}
+            <li class=\"p-1\">
+                <a class=\"text-pink-600 hover:text-blue-600\" href=\"{{doc_root}}admin/index.php\">Admin</a>
+            </li>
+            {% endif %}
+            <li class=\"p-1\">
+                <a class=\"text-pink-600 hover:text-blue-600\" href=\"{{doc_root}}logout.php\">Logout</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
     <div class=\"max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4\">
         <div class=\"logo\">
             <a class=\"flex items-center space-x-3 rtl:space-x-reverse\" href=\"{{doc_root}}index.php\">

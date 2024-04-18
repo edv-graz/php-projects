@@ -97,7 +97,22 @@ class __TwigTemplate_f4fcef7c5ab1d02968d52b5e97a70a58 extends Template
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "author", [], "any", false, false, false, 17), "html", null, true);
             echo "</a>
     </p>
-</article>
+    ";
+            // line 19
+            if ((twig_get_attribute($this->env, $this->source, ($context["session"] ?? null), "id", [], "any", false, false, false, 19) == twig_get_attribute($this->env, $this->source, $context["article"], "user_id", [], "any", false, false, false, 19))) {
+                // line 20
+                echo "    <p class=\"edit mt-4\">
+        <a class=\"text-white bg-pink-600  hover:bg-blue-600 p-2 rounded-md mt-2\" href=\"";
+                // line 21
+                echo twig_escape_filter($this->env, ($context["doc_root"] ?? null), "html", null, true);
+                echo "edit-article.php?id=";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 21), "html", null, true);
+                echo "\">Edit</a>
+    </p>
+    ";
+            }
+            // line 24
+            echo "</article>
 ";
         }
         $_parent = $context['_parent'];
@@ -126,7 +141,7 @@ class __TwigTemplate_f4fcef7c5ab1d02968d52b5e97a70a58 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  97 => 17,  91 => 16,  87 => 15,  81 => 14,  75 => 11,  70 => 10,  64 => 8,  57 => 6,  52 => 5,  50 => 4,  44 => 3,  41 => 2,  37 => 1,);
+        return array (  115 => 24,  107 => 21,  104 => 20,  102 => 19,  97 => 17,  91 => 16,  87 => 15,  81 => 14,  75 => 11,  70 => 10,  64 => 8,  57 => 6,  52 => 5,  50 => 4,  44 => 3,  41 => 2,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -149,6 +164,11 @@ class __TwigTemplate_f4fcef7c5ab1d02968d52b5e97a70a58 extends Template
         by <a class=\"text-pink-400\" href=\"{{root_doc}}user.php?id={{article.user_id}}\">
         {{article.author}}</a>
     </p>
+    {% if (session.id == article.user_id) %}
+    <p class=\"edit mt-4\">
+        <a class=\"text-white bg-pink-600  hover:bg-blue-600 p-2 rounded-md mt-2\" href=\"{{doc_root}}edit-article.php?id={{article.id}}\">Edit</a>
+    </p>
+    {% endif %}
 </article>
 {% endfor %}", "article-list.html", "/Users/christophmitterwallner/Documents/app-dev/php/php-projects/cms-system/templates/article-list.html");
     }

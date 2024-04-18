@@ -1,0 +1,39 @@
+{% extends 'admin/layout.html' %}
+
+{% block content %}
+<main class="container mx-auto flex justify-center flex-col items-center">
+    <h1 class="text-4xl text-blue-500 mb-8">Admin</h1>
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 max-w-xl mb-10">
+        <thead class="text-xl text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 ">
+        <tr>
+            <th class="px-6 py-3">Type</th>
+            <th class="px-6 py-3">Count</th>
+            <th class="px-6 py-3">View</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="bg-white border-b dark:bg-gray-800">
+            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Categories</td>
+            <td class="px-6 py-4 font-medium text-blue-600 whitespace-nowrap">{{categories_count}}</td>
+            <td class="px-6 py-4 font-medium text-pink-600 whitespace-nowrap"><a
+                    href="{{doc_root}}admin/categories.php">View</a>
+            </td>
+        </tr>
+        <tr class="bg-white border-b dark:bg-gray-800">
+            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Articles</td>
+            <td class="px-6 py-4 font-medium text-blue-600 whitespace-nowrap">{{articles_count}}</td>
+            <td class="px-6 py-4 font-medium text-pink-600 whitespace-nowrap"><a
+                    href="{{doc_root}}admin/articles.php">View</a>
+            </td>
+        </tr>
+        <tr class="bg-white border-b dark:bg-gray-800">
+            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Users</td>
+            <td class="px-6 py-4 font-medium text-blue-600 whitespace-nowrap">{{users_count}}</td>
+            <td class="px-6 py-4 font-medium text-pink-600 whitespace-nowrap">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+{% endblock %}
+
