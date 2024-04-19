@@ -2,7 +2,9 @@
   "require": {
     "ezyang/htmlpurifier": "^4.17",
     "twig/twig": "^3.8",
-    "phpmailer/phpmailer": "^6.9"
+    "phpmailer/phpmailer": "^6.9",
+    "ext-gd": "*",
+    "ext-pdo": "*"
   },
   "autoload": {
     "psr-4": {

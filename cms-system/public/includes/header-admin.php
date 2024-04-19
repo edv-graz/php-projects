@@ -11,7 +11,7 @@
 <header class="bg-white border-gray-200 dark:bg-gray-900 border-b-4">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div class="logo">
-            <a href="../index.php" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <a href="../../src/sites/index.php" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="../img/page-logo.png" alt="IT-Logo" width="100">
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">IT-News-Blog</span>
             </a>

@@ -12,10 +12,10 @@
         {% if session.id == 0 %}
         <ul class="flex justify-end p-1">
             <li class="p-1">
-                <a class="text-pink-600 hover:text-blue-600" href="{{doc_root}}login.php">Login</a>
+                <a class="text-pink-600 hover:text-blue-600" href="{{doc_root}}login">Login</a>
             </li>
             <li class="p-1">
-                <a class="text-pink-600 hover:text-blue-600" href="{{doc_root}}register.php">Register</a>
+                <a class="text-pink-600 hover:text-blue-600" href="{{doc_root}}register">Register</a>
             </li>
         </ul>
         {% else %}
@@ -29,14 +29,14 @@
             </li>
             {% endif %}
             <li class="p-1">
-                <a class="text-pink-600 hover:text-blue-600" href="{{doc_root}}logout.php">Logout</a>
+                <a class="text-pink-600 hover:text-blue-600" href="{{doc_root}}logout">Logout</a>
             </li>
             {% endif %}
         </ul>
     </nav>
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div class="logo">
-            <a class="flex items-center space-x-3 rtl:space-x-reverse" href="{{doc_root}}index.php">
+            <a class="flex items-center space-x-3 rtl:space-x-reverse" href="{{doc_root}}index">
                 <img alt="IT-Logo" src="{{doc_root}}img/page-logo.png" width="100">
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">IT-News-Blog</span>
             </a>
@@ -60,7 +60,7 @@
                         <a class="block py-2 px-3 rounded bg-blue-700
                          {% if (section == link.id)%}md:text-pink-600{%else%}md:text-blue-600{%endif%}
                          hover:text-pink-600 md:bg-transparent md:p-0 dark:text-white md:dark:text-blue-500"
-                           href="{{ doc_root }}category.php?id={{ link.id }}">
+                           href="{{ doc_root }}category/{{link.id}}/{{link.seo_title}}">
                             {{ link.name }}
                         </a>
                     </li>

@@ -2,7 +2,6 @@
 
 use EdvGraz\Validation\Validate;
 
-require '../src/bootstrap.php';
 
 $data['navigation'] = $cms->getCategory()->fetchNavigation();
 $mail               = '';

@@ -5,10 +5,13 @@ use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
 
+
 define( 'APP_ROOT', dirname( __DIR__, 1 ) );
+
 require APP_ROOT . '/config/config.php';
 require APP_ROOT . '/src/functions.php';
 require APP_ROOT . '/vendor/autoload.php';
+
 
 // Definiere Objekt zum Speichern von Erweiterungen und Konfigurationen
 $loader = new FilesystemLoader( APP_ROOT . '/templates' );
@@ -29,4 +32,5 @@ unset( $dsn, $user_name, $password );
 
 $session = $cms->getSession();
 $twig->addGlobal( 'session', $session );
+
 

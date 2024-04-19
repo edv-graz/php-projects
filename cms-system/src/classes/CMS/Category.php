@@ -12,7 +12,7 @@ class Category {
 	}
 
 	public function fetch( int $id ): array {
-		$sql = "SELECT id, name, description, navigation FROM category WHERE id = :id;";
+		$sql = "SELECT id, name, description, navigation, seo_title FROM category WHERE id = :id;";
 
 		return $this->db->sql_execute( $sql, [ 'id' => $id ] )->fetch();
 	}
@@ -24,7 +24,7 @@ class Category {
 	}
 
 	public function fetchNavigation(): array {
-		$sql = "SELECT id, name FROM category WHERE navigation = 1;";
+		$sql = "SELECT id, name, seo_title FROM category WHERE navigation = 1;";
 
 		return $this->db->sql_execute( $sql )->fetchAll();
 	}
@@ -37,11 +37,11 @@ class Category {
 
 	public function push( array $data ): bool {
 		try {
-			$sql = "INSERT INTO category (name, description, navigation) VALUES (:name, :description, :navigation);";
+			$sql = "INSERT INTO category (name, description, navigation, seo_title) VALUES (:name, :description, :navigation, :seo_title);";
 			$this->db->sql_execute( $sql, $data );
 
 			return true;
-		} catch ( PDOException $e ) {
+		} catch ( \PDOException $e ) {
 			return false;
 		}
 	}

@@ -1,9 +1,9 @@
 <?php
 
 const DEV_MODE    = true;
-const DOC_ROOT    = '/cms-system/public/';
+const DOC_ROOT    = '/public/';
 const ROOT_FOLDER = '/public/';
-const DOMAIN      = 'http://localhost:63342';
+const DOMAIN      = 'http://localhost';
 //Database connection
 $type      = 'mysql';
 $host      = 'localhost';
