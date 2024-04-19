@@ -8,7 +8,7 @@
     <header class="p-10">
         <h1 class="text-4xl text-blue-500 mb-8">Log In</h1>
     </header>
-    <form action="login.php" class="w-1/3 grid" method="POST">
+    <form action="login" class="w-1/3 grid" method="POST">
         {% if errors %}
         <p class="error text-red-500 bg-red-200 p-5 rounded-md">Please correct all errors</p>
         {% endif %}
@@ -24,7 +24,7 @@
                    id="password" name="password" type="password">
             <span class="text-red-500">{{errors.password|raw}}</span>
         </div>
-        <a class="text-pink-600 hover:text-blue-600" href="forgot-password.php">Reset your password</a>
+        <a class="text-pink-600 hover:text-blue-600" href="forgot-password">Reset your password</a>
         <button class="text-white w-1/3 bg-blue-500 p-3 rounded-md hover:bg-pink-600 m-5" type="submit">Login</button>
     </form>
 </main>

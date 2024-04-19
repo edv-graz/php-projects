@@ -1,10 +1,10 @@
 <?php
-require '../../src/bootstrap.php';
+
 is_admin( $session->role );
 
 use EdvGraz\Validation\Validate;
 
-$id     = filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT ) ?? '';
+//$id     = filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT ) ?? '';
 $errors = [
 	'issue'       => '',
 	'name'        => '',
@@ -28,6 +28,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 	$category['name']        = filter_input( INPUT_POST, 'name' );
 	$category['description'] = filter_input( INPUT_POST, 'description' );
 	$category['navigation']  = filter_input( INPUT_POST, 'navigation', FILTER_VALIDATE_BOOLEAN ) ?? 0;
+	$category['seo_title'] = create_seo_name( $category['name'] );
 	// Die Daten werden auf Länge und vorhanden validiert
 	$errors['name']        = Validate::is_text( $category['name'], 1, 50 ) && ( ! empty( $category['name'] ) ) ? ''
 		: 'Name must be between 1 and 50 characters';
@@ -40,16 +41,17 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 		$bindings = [
 			'name'        => $category['name'],
 			'description' => $category['description'],
-			'navigation'  => $category['navigation']
+			'navigation'  => $category['navigation'],
+			'seo_title' => $category['seo_title'],
 		];
 		try {
 			if ( $id ) {
 				$bindings['id'] = $id;
 				$cms->getCategory()->update( $bindings );
-				redirect( 'categories.php', [ 'success' => 'category successfully saved' ] );
+				redirect( DOC_ROOT . 'admin/categories/', [ 'success' => 'category successfully saved' ] );
 			} else {
 				$cms->getCategory()->push( $bindings );
-				redirect( 'categories.php', [ 'success' => 'category successfully saved' ] );
+				redirect( DOC_ROOT . 'admin/categories/', [ 'success' => 'category successfully saved' ] );
 			}
 		} catch ( PDOException $e ) {
 			$errors['issue'] = 'Name already in use';

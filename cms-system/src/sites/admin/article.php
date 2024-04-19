@@ -1,10 +1,10 @@
 <?php
-require '../../src/bootstrap.php';
+
 is_admin( $session->role );
 
 use EdvGraz\Validation\Validate;
 
-$id       = filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT ) ?? '';
+//$id       = filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT ) ?? '';
 $tmp_path = $_FILES['image_file']['tmp_name'] ?? '';
 $save_to  = '';
 
@@ -34,7 +34,7 @@ $errors = [
 if ( $id ) {
 	$article = $cms->getArticle()->fetch( $id, false );
 	if ( ! $article ) {
-		redirect( 'articles.php', [ 'error' => 'article not found' ] );
+		redirect( 'articles', [ 'error' => 'article not found' ] );
 	}
 }
 $categories = $cms->getCategory()->getAll();
@@ -74,6 +74,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 	$article['user_id']     = filter_input( INPUT_POST, 'user', FILTER_VALIDATE_INT );
 	$article['category_id'] = filter_input( INPUT_POST, 'category', FILTER_VALIDATE_INT );
 	$article['published']   = filter_input( INPUT_POST, 'published', FILTER_VALIDATE_BOOLEAN ) ? 1 : 0;
+	$article['seo_title'] = create_seo_name( $article['title'] );
 
 	// HTML-Code wird bereinigt
 	$purifier = new HTMLPurifier();
@@ -103,11 +104,11 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 		unset( $bindings['image_file'], $bindings['image_alt'] );
 		if ( $id ) {
 			$cms->getArticle()->update( $bindings );
-			redirect( 'articles.php', [ 'success' => 'Article successfully updated ' ] );
+			redirect( DOC_ROOT . 'admin/articles/', [ 'success' => 'Article successfully updated ' ] );
 		} else {
 			unset( $bindings['id'] );
 			$cms->getArticle()->push( $bindings );
-			redirect( 'articles.php', [ 'success' => 'Article successfully saved' ] );
+			redirect( DOC_ROOT . 'admin/articles/', [ 'success' => 'Article successfully saved' ] );
 		}
 	}
 }

@@ -1,5 +1,5 @@
 <?php
-require '../../src/bootstrap.php';
+
 is_admin( $session->role );
 $articles = $cms->getArticle()->getAll( null, false );
 $error    = filter_input( INPUT_GET, 'error' ) ?? '';

@@ -48,7 +48,7 @@ class Category {
 
 	public function update( array $data ): bool {
 		try {
-			$sql = "UPDATE category SET name = :name, description = :description, navigation = :navigation WHERE id = :id;";
+			$sql = "UPDATE category SET name = :name, description = :description, navigation = :navigation, seo_title = :seo_title WHERE id = :id;";
 			$this->db->sql_execute( $sql, $data );
 
 			return true;

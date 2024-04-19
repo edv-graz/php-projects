@@ -1,6 +1,6 @@
 {% for article in articles %}
 <article class="w-full p-4 flex justify-between flex-col sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4">
-    <a href="{{doc_root}}article.php?id={{article.id}}">
+    <a href="article/{{article.id}}/{{article.seo_title}}">
         {% if article.image_file %}
         <img alt="{{article.image_alt}}"
              src="{{doc_root}}uploads/{{article.image_file}}">
@@ -11,14 +11,14 @@
         <p class="text-gray-500 pb-2.5">{{article.summary}}</p>
     </a>
     <p class="credit text-xs">
-        Posted in <a class="text-pink-400" href="{{root_doc}}category.php?id={{article.category_id}}">
+        Posted in <a class="text-pink-400" href="category/{{article.category_id}}">
         {{article.category}}</a>
-        by <a class="text-pink-400" href="{{root_doc}}user.php?id={{article.user_id}}">
+        by <a class="text-pink-400" href="{{doc_root}}user/{{article.user_id}}">
         {{article.author}}</a>
     </p>
     {% if (session.id == article.user_id) %}
     <p class="edit mt-4">
-        <a class="text-white bg-pink-600  hover:bg-blue-600 p-2 rounded-md mt-2" href="{{doc_root}}edit-article.php?id={{article.id}}">Edit</a>
+        <a class="text-white bg-pink-600  hover:bg-blue-600 p-2 rounded-md mt-2" href="edit-article/{{article.id}}">Edit</a>
     </p>
     {% endif %}
 </article>

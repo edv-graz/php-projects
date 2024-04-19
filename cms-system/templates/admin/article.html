@@ -10,7 +10,7 @@
     {% if (errors.issue is not empty) %}
     <p class="error text-red-500 bg-red-200 p-5 rounded-md">{{errors.issue}}</p>
     {% endif %}
-    <form action="{{doc_root}}admin/article.php?id={{id}}" class="grid gap-6 mb-6 md:grid-cols-2 md:w-full" enctype="multipart/form-data"
+    <form action="article/{{id}}" class="grid gap-6 mb-6 md:grid-cols-2 md:w-full" enctype="multipart/form-data"
           method="POST">
         <div>
             <label class="block mb-2 text-sm font-medium text-gray-900 pt-2" for="title">Title</label>

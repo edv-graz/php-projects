@@ -10,7 +10,7 @@ class Article {
 	}
 
 	public function fetch( int $id, bool $published = true ) {
-		$sql = "SELECT a.id, a.title, a.summary, a.content, a.created, a.category_id, a.user_id, a.published, c.name  AS category,
+		$sql = "SELECT a.id, a.title, a.summary, a.content, a.created, a.category_id, a.user_id, a.published, a.seo_title, c.name  AS category,
 						CONCAT(u.forename, ' ', u.surname) as author, 
 						i.id as image_id, i.filename as image_file, i.alttext as image_alt
 						FROM articles as a
@@ -27,7 +27,7 @@ class Article {
 	}
 
 	public function getAll( int $cat_id = null, bool $published = true, int $user_id = null, int $limit = 1000 ): array {
-		$sql = "SELECT a.id, a.title, a.summary, a.category_id, a.user_id, a.published, a.created, c.name  AS category,
+		$sql = "SELECT a.id, a.title, a.summary, a.category_id, a.user_id, a.published, a.created, a.seo_title, c.name  AS category,
 						CONCAT(u.forename, ' ', u.surname) as author, 
 						i.filename as image_file , i.alttext as image_alt
 						FROM articles as a
@@ -51,7 +51,7 @@ class Article {
 	}
 
 	public function push( array $bindings ): void {
-		$sql = "INSERT INTO articles (title, summary, content, published, category_id, user_id, images_id) VALUES (:title, :summary, :content, :published, :category_id, :user_id, :image_id);";
+		$sql = "INSERT INTO articles (title, summary, content, published, category_id, user_id, images_id, seo_title) VALUES (:title, :summary, :content, :published, :category_id, :user_id, :image_id, :seo_title);";
 		$this->db->sql_execute( $sql, $bindings );
 	}
 

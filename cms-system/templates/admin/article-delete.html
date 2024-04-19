@@ -2,11 +2,11 @@
 
 {% block content %}
 <main class="container mx-auto p-10 flex flex-col items-center">
-    <form action="{{doc_root}}admin/article-delete.php?id={{id}}" method="post">
+    <form action="{{doc_root}}admin/article-delete/{{id}}" method="post">
         <input name="id" type="hidden" value="{{id}}">
         <p class="text-blue-600 text-2xl mb-4">Are you sure you want to delete this article?</p>
         <button class="bg-pink-600 text-white p-3 rounded-md w-1/3" type="submit">Yes</button>
-        <button class="bg-blue-500 text-white p-3 rounded-md w-1/3" formaction="articles.php" type="submit">No</button>
+        <button class="bg-blue-500 text-white p-3 rounded-md w-1/3" formaction="{{doc_root}}admin/articles" type="submit">No</button>
     </form>
 </main>
 {% endblock %}

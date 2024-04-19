@@ -2,6 +2,6 @@
 
 
 $cms->getSession()->destroySession();
-redirect( 'index.php' );
+redirect( 'index' );
 
 

@@ -3,7 +3,7 @@
 const DEV_MODE    = true;
 const DOC_ROOT    = '/public/';
 const ROOT_FOLDER = '/public/';
-const DOMAIN      = 'http://localhost';
+const DOMAIN      = 'http://localhost:8888';
 //Database connection
 $type      = 'mysql';
 $host      = 'localhost';

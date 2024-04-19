@@ -84,7 +84,7 @@ class __TwigTemplate_19e6bd54758efc0c2bdf25440a83242f extends Template
                 <a class=\"text-pink-600 hover:text-blue-600\" href=\"";
             // line 24
             yield Twig\Extension\EscaperExtension::escape($this->env, ($context["doc_root"] ?? null), "html", null, true);
-            yield "user.php?id=";
+            yield "user/";
             yield Twig\Extension\EscaperExtension::escape($this->env, CoreExtension::getAttribute($this->env, $this->source, ($context["session"] ?? null), "id", [], "any", false, false, false, 24), "html", null, true);
             yield "\">";
             yield Twig\Extension\EscaperExtension::escape($this->env, CoreExtension::getAttribute($this->env, $this->source, ($context["session"] ?? null), "forename", [], "any", false, false, false, 24), "html", null, true);
@@ -98,7 +98,7 @@ class __TwigTemplate_19e6bd54758efc0c2bdf25440a83242f extends Template
                 <a class=\"text-pink-600 hover:text-blue-600\" href=\"";
                 // line 28
                 yield Twig\Extension\EscaperExtension::escape($this->env, ($context["doc_root"] ?? null), "html", null, true);
-                yield "admin/index.php\">Admin</a>
+                yield "admin/index\">Admin</a>
             </li>
             ";
             }
@@ -182,7 +182,7 @@ class __TwigTemplate_19e6bd54758efc0c2bdf25440a83242f extends Template
                         <a href=\"";
         // line 69
         yield Twig\Extension\EscaperExtension::escape($this->env, ($context["doc_root"] ?? null), "html", null, true);
-        yield "search.php\">
+        yield "search\">
                             <object class=\"pointer-events-none\" data=\"";
         // line 70
         yield Twig\Extension\EscaperExtension::escape($this->env, ($context["doc_root"] ?? null), "html", null, true);
@@ -214,7 +214,7 @@ class __TwigTemplate_19e6bd54758efc0c2bdf25440a83242f extends Template
         <a href=\"";
         // line 87
         yield Twig\Extension\EscaperExtension::escape($this->env, ($context["doc_root"] ?? null), "html", null, true);
-        yield "contact.php\">Contact</a>
+        yield "contact\">Contact</a>
     </div>
 </footer>
 </body>
@@ -294,11 +294,11 @@ class __TwigTemplate_19e6bd54758efc0c2bdf25440a83242f extends Template
         {% else %}
         <ul class=\"flex justify-end p-1\">
             <li class=\"p-1\">
-                <a class=\"text-pink-600 hover:text-blue-600\" href=\"{{doc_root}}user.php?id={{session.id}}\">{{session.forename}}</a>
+                <a class=\"text-pink-600 hover:text-blue-600\" href=\"{{doc_root}}user/{{session.id}}\">{{session.forename}}</a>
             </li>
             {% if session.role == 'admin' %}
             <li class=\"p-1\">
-                <a class=\"text-pink-600 hover:text-blue-600\" href=\"{{doc_root}}admin/index.php\">Admin</a>
+                <a class=\"text-pink-600 hover:text-blue-600\" href=\"{{doc_root}}admin/index\">Admin</a>
             </li>
             {% endif %}
             <li class=\"p-1\">
@@ -339,7 +339,7 @@ class __TwigTemplate_19e6bd54758efc0c2bdf25440a83242f extends Template
                     </li>
                     {% endfor %}
                     <li>
-                        <a href=\"{{doc_root}}search.php\">
+                        <a href=\"{{doc_root}}search\">
                             <object class=\"pointer-events-none\" data=\"{{doc_root}}img/material-search.svg\" type=\"image/svg+xml\">
                                 <img alt=\"Search\" src=\"{{doc_root}}img/material-search.png\">
                             </object>
@@ -357,7 +357,7 @@ class __TwigTemplate_19e6bd54758efc0c2bdf25440a83242f extends Template
         &copy; edvgraz {{ 'now'|date('Y') }}
     </div>
     <div>
-        <a href=\"{{doc_root}}contact.php\">Contact</a>
+        <a href=\"{{doc_root}}contact\">Contact</a>
     </div>
 </footer>
 </body>

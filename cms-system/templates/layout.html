@@ -21,11 +21,11 @@
         {% else %}
         <ul class="flex justify-end p-1">
             <li class="p-1">
-                <a class="text-pink-600 hover:text-blue-600" href="{{doc_root}}user.php?id={{session.id}}">{{session.forename}}</a>
+                <a class="text-pink-600 hover:text-blue-600" href="{{doc_root}}user/{{session.id}}">{{session.forename}}</a>
             </li>
             {% if session.role == 'admin' %}
             <li class="p-1">
-                <a class="text-pink-600 hover:text-blue-600" href="{{doc_root}}admin/index.php">Admin</a>
+                <a class="text-pink-600 hover:text-blue-600" href="{{doc_root}}admin/index">Admin</a>
             </li>
             {% endif %}
             <li class="p-1">
@@ -66,7 +66,7 @@
                     </li>
                     {% endfor %}
                     <li>
-                        <a href="{{doc_root}}search.php">
+                        <a href="{{doc_root}}search">
                             <object class="pointer-events-none" data="{{doc_root}}img/material-search.svg" type="image/svg+xml">
                                 <img alt="Search" src="{{doc_root}}img/material-search.png">
                             </object>
@@ -84,7 +84,7 @@
         &copy; edvgraz {{ 'now'|date('Y') }}
     </div>
     <div>
-        <a href="{{doc_root}}contact.php">Contact</a>
+        <a href="{{doc_root}}contact">Contact</a>
     </div>
 </footer>
 </body>

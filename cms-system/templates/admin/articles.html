@@ -10,7 +10,7 @@
         <p class="success text-green-500 bg-green-200 p-5 rounded-md">{{success}}</p>
         {% endif %}
         <h1 class="text-4xl text-blue-500 mb-8">Articles</h1>
-        <button class="text-white bg-blue-500 p-3 rounded-md hover:bg-pink-600"><a href="{{doc_root}}admin/article.php">Add a new Article</a></button>
+        <button class="text-white bg-blue-500 p-3 rounded-md hover:bg-pink-600"><a href="article">Add a new Article</a></button>
     </header>
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 max-w-xl mb-10">
         <thead class="text-xl text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 ">
@@ -48,10 +48,10 @@
                 {% endif %}
             </td>
             <td class="px-6 py-4 font-medium text-pink-600 whitespace-nowrap"><a
-                    href="{{doc_root}}admin/article.php?id={{article.id}}">Edit</a>
+                    href="article/{{article.id}}">Edit</a>
             </td>
             <td class="px-6 py-4 font-medium text-blue-600 whitespace-nowrap"><a
-                    href="{{doc_root}}admin/article-delete.php?id={{article.id}}">Delete</a>
+                    href="article-delete/{{article.id}}">Delete</a>
             </td>
         </tr>
         {% endfor %}

@@ -107,20 +107,16 @@ class __TwigTemplate_3bf3e3b52d91fc809f24c4a3474ed50a extends Template
         yield Twig\Extension\EscaperExtension::escape($this->env, CoreExtension::getAttribute($this->env, $this->source, ($context["article"] ?? null), "content", [], "any", false, false, false, 19), "html", null, true);
         yield "</div>
         <p class=\"credit text-xs mt-5 mb-5\">
-            Posted in <a class=\"text-pink-400\" href=\"";
+            Posted in <a class=\"text-pink-400\" href=\"category/";
         // line 21
-        yield Twig\Extension\EscaperExtension::escape($this->env, ($context["doc_root"] ?? null), "html", null, true);
-        yield "category.php?id=";
         yield Twig\Extension\EscaperExtension::escape($this->env, CoreExtension::getAttribute($this->env, $this->source, ($context["article"] ?? null), "category_id", [], "any", false, false, false, 21), "html", null, true);
         yield "\">
             ";
         // line 22
         yield Twig\Extension\EscaperExtension::escape($this->env, CoreExtension::getAttribute($this->env, $this->source, ($context["article"] ?? null), "category", [], "any", false, false, false, 22), "html", null, true);
         yield "</a>
-            by <a class=\"text-pink-400\" href=\"";
+            by <a class=\"text-pink-400\" href=\"user/";
         // line 23
-        yield Twig\Extension\EscaperExtension::escape($this->env, ($context["doc_root"] ?? null), "html", null, true);
-        yield "user.php?id=";
         yield Twig\Extension\EscaperExtension::escape($this->env, CoreExtension::getAttribute($this->env, $this->source, ($context["article"] ?? null), "user_id", [], "any", false, false, false, 23), "html", null, true);
         yield "\">
             ";
@@ -155,7 +151,7 @@ class __TwigTemplate_3bf3e3b52d91fc809f24c4a3474ed50a extends Template
      */
     public function getDebugInfo()
     {
-        return array (  128 => 24,  122 => 23,  118 => 22,  112 => 21,  107 => 19,  103 => 18,  99 => 17,  95 => 15,  89 => 13,  82 => 11,  77 => 10,  75 => 9,  71 => 7,  67 => 6,  57 => 4,  49 => 3,  38 => 1,);
+        return array (  124 => 24,  120 => 23,  116 => 22,  112 => 21,  107 => 19,  103 => 18,  99 => 17,  95 => 15,  89 => 13,  82 => 11,  77 => 10,  75 => 9,  71 => 7,  67 => 6,  57 => 4,  49 => 3,  38 => 1,);
     }
 
     public function getSourceContext()
@@ -180,9 +176,9 @@ class __TwigTemplate_3bf3e3b52d91fc809f24c4a3474ed50a extends Template
         <div class=\"text-gray-500 mb-3\">{{article.created|date('d M. Y')}}</div>
         <div class=\"text-gray-500\">{{article.content}}</div>
         <p class=\"credit text-xs mt-5 mb-5\">
-            Posted in <a class=\"text-pink-400\" href=\"{{doc_root}}category.php?id={{article.category_id}}\">
+            Posted in <a class=\"text-pink-400\" href=\"category/{{article.category_id}}\">
             {{article.category}}</a>
-            by <a class=\"text-pink-400\" href=\"{{doc_root}}user.php?id={{article.user_id}}\">
+            by <a class=\"text-pink-400\" href=\"user/{{article.user_id}}\">
             {{article.author}}</a>
         </p>
     </section>

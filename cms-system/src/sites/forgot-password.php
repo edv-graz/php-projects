@@ -1,7 +1,5 @@
 <?php
 
-require '../src/bootstrap.php';
-
 use EdvGraz\Mail\Email;
 
 $navigation = $cms->getCategory()->fetchNavigation();
@@ -17,7 +15,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 		$user_id = $cms->getUser()->getUserIdByEmail( $email );
 		if ( $user_id ) {
 			$token   = $cms->getToken()->save_token( $user_id );
-			$link    = DOMAIN . DOC_ROOT . 'reset-password.php?token=' . $token;
+			$link    = DOMAIN . DOC_ROOT . 'reset-password/?token=' . $token;
 			$to      = $email;
 			$subject = 'Password reset';
 			$message = 'Please click on the following link to reset your password: <a href"' . $link . '">' . $link . '</a>';

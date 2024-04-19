@@ -61,7 +61,7 @@ class __TwigTemplate_e0daec36d2c48e6521e7c9421f4998aa extends Template
     <header class=\"p-10\">
         <h1 class=\"text-4xl text-blue-500 mb-8\">Register</h1>
     </header>
-    <form action=\"register.php\" class=\"w-2/3 grid\" method=\"POST\">
+    <form action=\"register\" class=\"w-2/3 grid\" method=\"POST\">
         ";
         // line 10
         if (($context["errors"] ?? null)) {
@@ -165,7 +165,7 @@ class __TwigTemplate_e0daec36d2c48e6521e7c9421f4998aa extends Template
     <header class=\"p-10\">
         <h1 class=\"text-4xl text-blue-500 mb-8\">Register</h1>
     </header>
-    <form action=\"register.php\" class=\"w-2/3 grid\" method=\"POST\">
+    <form action=\"register\" class=\"w-2/3 grid\" method=\"POST\">
         {% if errors %}
         <p class=\"error text-red-500 bg-red-200 p-5 rounded-md\">Please correct all errors</p>
         {% endif %}

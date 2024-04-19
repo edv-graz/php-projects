@@ -79,4 +79,17 @@ function scale_and_copy( string $filename, string $save_to, $max_width = 1024, $
 	return true;
 }
 
+function create_seo_name(string $name): string {
+	$name = strtolower($name);
+	$name = trim($name);
+	// Entfernt alle Sonderzeichen außer Bindestrich
+	$name = preg_replace('/[^-A-z0-9]+/', '', $name);
+	// Entfernt alle Leerzeichen und ersetz sie durch Bindestrich
+	$name = preg_replace('/ /', '-', $name);
+
+	return $name;
+}
+
+
+
 

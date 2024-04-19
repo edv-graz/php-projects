@@ -21,8 +21,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 			$errors['login'] = 'Your account is disabled';
 		} elseif ( $user ) {
 			$cms->getSession()->createSession( $user );
-			redirect( 'user.php', [ 'id' => $user['id'] ] );
-
+			redirect( 'user/' . $user['id'] );
 		} else {
 			$errors['login'] = 'Login failed';
 		}

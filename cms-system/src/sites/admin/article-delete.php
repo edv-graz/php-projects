@@ -1,14 +1,14 @@
 <?php
-require '../../src/bootstrap.php';
+
 is_admin( $session->role );
-$id = filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT );
+
 if ( ! $id ) {
-	redirect( 'articles.php', [ 'error' => 'Article not found (id)' ] );
+	redirect( 'articles', [ 'error' => 'Article not found (id)' ] );
 }
 
 $article = $cms->getArticle()->fetch( $id );
 if ( ! $article ) {
-	redirect( 'articles.php', [ 'error' => 'Article not found' ] );
+	redirect( 'articles', [ 'error' => 'Article not found' ] );
 }
 
 if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
@@ -19,9 +19,9 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 			unlink( UPLOAD_DIR . $article['filename'] );
 		}
 		$cms->getArticle()->delete( $id );
-		redirect( 'articles.php', [ 'success' => 'Article deleted' ] );
+		redirect( DOC_ROOT . 'articles', [ 'success' => 'Article deleted' ] );
 	} catch ( PDOException $e ) {
-		redirect( 'articles.php', [ 'error' => 'Article could not be deleted' ] );
+		redirect( DOC_ROOT . 'articles', [ 'error' => 'Article could not be deleted' ] );
 	}
 }
 

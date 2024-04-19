@@ -28,7 +28,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 
 	if ( empty( $problems ) ) {
 		if ( $cms->getUser()->addUser( $user ) ) {
-			redirect( 'login.php', [ 'success' => 'User added successfully' ] );
+			redirect( 'login/', [ 'success' => 'User added successfully' ] );
 		} else {
 			$errors['email'] = 'Email already exists';
 		}

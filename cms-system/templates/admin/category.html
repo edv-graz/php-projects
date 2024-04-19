@@ -2,7 +2,7 @@
 
 {% block content %}
 <main class="container w-auto mx-auto md:w-1/2 flex justify-center flex-col items-center p-5">
-    <form action="{{doc_root}}admin/category.php?id={{id}}" class="w-full grid" method="POST">
+    <form action="{{doc_root}}admin/category/{{id}}" class="w-full grid" method="POST">
         {% if id is empty %}
         <h2 class="text-3xl text-blue-500 mb-8">New Category</h2>
         {% else %}

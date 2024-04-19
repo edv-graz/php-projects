@@ -18,9 +18,9 @@
         <div class="text-gray-500 mb-3">{{article.created|date('d M. Y')}}</div>
         <div class="text-gray-500">{{article.content}}</div>
         <p class="credit text-xs mt-5 mb-5">
-            Posted in <a class="text-pink-400" href="{{doc_root}}category.php?id={{article.category_id}}">
+            Posted in <a class="text-pink-400" href="category/{{article.category_id}}">
             {{article.category}}</a>
-            by <a class="text-pink-400" href="{{doc_root}}user.php?id={{article.user_id}}">
+            by <a class="text-pink-400" href="user/{{article.user_id}}">
             {{article.author}}</a>
         </p>
     </section>

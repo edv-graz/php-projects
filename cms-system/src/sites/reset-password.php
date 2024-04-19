@@ -3,7 +3,6 @@
 use EdvGraz\Mail\Email;
 use EdvGraz\Validation\Validate;
 
-require '../src/bootstrap.php';
 
 $errors = [];
 
