@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+<main class="flex flex-wrap container mx-auto flex-col p-5">
+    <form action="{{doc_root}}add-comment/{{comment.article_id}}/?comment_id={{comment.id}}&edit=1" method="post">
+        <label for="comment"></label>
+        <textarea id="comment" class="w-full p-2 mb-5 border" name="comment" rows="5" placeholder="Add a comment">{{comment.comment}}</textarea>
+        <button class="text-white bg-pink-600  hover:bg-blue-600 p-2 rounded-md" type="submit">Change Comment</button>
+    </form>
+</main>
+{% endblock %}

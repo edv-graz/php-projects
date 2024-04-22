@@ -4,7 +4,7 @@
 {% block description %} {{category.description}} {% endblock %}
 
 {% block content %}
-<main class="flex flex-wrap container mx-auto">
+<main class="flex flex-wrap container mx-auto flex-col">
     <section>
         {% if article.image_file %}
         <img alt="{{article.image_alt}}"
@@ -24,6 +24,36 @@
             {{article.author}}</a>
         </p>
     </section>
+    {% if (session.id != 0) %}
+    <section class="comments">
+        <h2 class="text-2xl text-blue-500 mb-4 mt-8">Comments</h2>
+        {% if comments %}
+        {% for comment in comments %}
+        <div class="comment">
+            <div class="text-gray-500">{{comment.created|date('d M. Y')}}</div>
+            <div class="text-gray-500 mb-5">{{comment.comment}}</div>
+            {% if (comment.user_id == session.id) %}
+            <a class="text-white bg-pink-600  hover:bg-blue-600 p-2 rounded-md" href="{{doc_root}}add-comment/{{article.id}}/?user_id={{session.id}}/&comment_id={{comment.id}}">Edit</a>
+            {% endif %}
+            <p class="credit text-xs mt-5 mb-5">
+                Posted by <a class="text-pink-400" href="{{doc_root}}user/{{comment.user_id}}">
+                {{comment.author}}</a>
+            </p>
+        <hr/>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>No comments yet.</p>
+        {% endif %}
+    </section>
+    <section>
+    <form action="{{doc_root}}add-comment/{{article.id}}/?user_id={{session.id}}#comment-form" id="comment-form" method="post">
+        <label for="comment"></label>
+        <textarea id="comment" class="w-full p-2 mb-5 border" name="comment" rows="5" placeholder="Add a comment"></textarea>
+        <button class="text-white bg-pink-600  hover:bg-blue-600 p-2 rounded-md" type="submit">Add Comment</button>
+    </form>
+    </section>
+    {% endif %}
 </main>
 {% endblock %}
 

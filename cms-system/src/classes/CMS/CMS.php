@@ -11,6 +11,7 @@ class CMS {
 	protected Image $image;
 	protected Session $session;
 	protected Token $token;
+	protected Comment $comment;
 
 	public function __construct( string $dsn, string $user_name, string $password ) {
 		$this->db = new Database( $dsn, $user_name, $password );
@@ -63,5 +64,12 @@ class CMS {
 		}
 
 		return $this->token;
+	}
+	public function getComment(): Comment {
+		if ( ! isset( $this->comment ) ) {
+			$this->comment = new Comment( $this->db );
+		}
+
+		return $this->comment;
 	}
 }

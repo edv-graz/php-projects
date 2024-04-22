@@ -2,6 +2,7 @@
 
 namespace EdvGraz\CMS;
 
+
 class Session {
 	public string $id;
 	public string $forename;
@@ -12,6 +13,7 @@ class Session {
 		$this->id       = $_SESSION['id'] ?? 0;
 		$this->forename = $_SESSION['forename'] ?? '';
 		$this->role     = $_SESSION['role'] ?? 'visitor';
+
 	}
 
 	public function updateSession( array $user ): void {
@@ -23,6 +25,7 @@ class Session {
 		$_SESSION['id']       = $user['id'];
 		$_SESSION['forename'] = $user['forename'];
 		$_SESSION['role']     = $user['role'];
+		$_SESSION['expire']   = time() + 30 * 60;
 	}
 
 	public function destroySession(): void {

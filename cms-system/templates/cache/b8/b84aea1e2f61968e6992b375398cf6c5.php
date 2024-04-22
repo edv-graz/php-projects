@@ -40,8 +40,10 @@ class __TwigTemplate_9311a99988efa322ab26a6b60def0ea7 extends Template
         foreach ($context['_seq'] as $context["_key"] => $context["article"]) {
             // line 2
             yield "<article class=\"w-full p-4 flex justify-between flex-col sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4\">
-    <a href=\"article/";
+    <a href=\"";
             // line 3
+            yield Twig\Extension\EscaperExtension::escape($this->env, ($context["doc_root"] ?? null), "html", null, true);
+            yield "article/";
             yield Twig\Extension\EscaperExtension::escape($this->env, CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 3), "html", null, true);
             yield "/";
             yield Twig\Extension\EscaperExtension::escape($this->env, CoreExtension::getAttribute($this->env, $this->source, $context["article"], "seo_title", [], "any", false, false, false, 3), "html", null, true);
@@ -139,14 +141,14 @@ class __TwigTemplate_9311a99988efa322ab26a6b60def0ea7 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  112 => 24,  106 => 21,  103 => 20,  101 => 19,  96 => 17,  90 => 16,  86 => 15,  82 => 14,  76 => 11,  71 => 10,  65 => 8,  58 => 6,  53 => 5,  51 => 4,  45 => 3,  42 => 2,  38 => 1,);
+        return array (  114 => 24,  108 => 21,  105 => 20,  103 => 19,  98 => 17,  92 => 16,  88 => 15,  84 => 14,  78 => 11,  73 => 10,  67 => 8,  60 => 6,  55 => 5,  53 => 4,  45 => 3,  42 => 2,  38 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("{% for article in articles %}
 <article class=\"w-full p-4 flex justify-between flex-col sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4\">
-    <a href=\"article/{{article.id}}/{{article.seo_title}}\">
+    <a href=\"{{doc_root}}article/{{article.id}}/{{article.seo_title}}\">
         {% if article.image_file %}
         <img alt=\"{{article.image_alt}}\"
              src=\"{{doc_root}}uploads/{{article.image_file}}\">

@@ -11,6 +11,8 @@ if ( ! $data['article'] ) {
 	include APP_ROOT . '/public/page_not_found.php';
 }
 
+$data['comments'] = $cms->getComment()->getComments( $id );
+
 $data['navigation']  = $cms->getCategory()->fetchNavigation();
 $data['title']       = $data['article']['title'];
 $data['description'] = $data['article']['summary'];
